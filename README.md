@@ -194,9 +194,9 @@ Open `opt/hatch/skills/` or follow the links above. No bundled binary needs to b
 
 <a id="files"></a>
 
-## 文件结构与重要文件
+## Repository layout and important files
 
-下面展开重要路径；`…` 表示省略其他程序或技能，花括号用于合并展示同级路径。全部技能入口见上方分类目录。这里的路径以已发布仓库为准，不包含本地另行解压的重复目录。
+The tree below expands the important paths; `…` omits additional executables and skills, and braces group sibling paths. The skill catalog above lists every skill entry. All links refer to files included in the published repository, not the separate local duplicate extraction directory.
 
 ```text
 .
@@ -262,29 +262,29 @@ Open `opt/hatch/skills/` or follow the links above. No bundled binary needs to b
         └── disabled-user-mgmt / percona-telemetry-disabled / gws
 ```
 
-### 先分清路径含义
+### Reading paths correctly
 
-仓库根目录是存档根目录，不是正在运行的操作系统根目录。`home/hatch/` 对应原 Agent 的 home；`opt/hatch/` 是其程序包；`opt/hatch-image/` 是镜像侧工具。原文中的 `~` 通常指 `/home/hatch`，不是你当前电脑的用户目录。绝对路径 `/run`、`/var/lib`、`/etc` 描述的是运行时依赖，本仓库大多没有这些内容。尤其要注意：`opt/hatch/runtime-cell/etc/` 只有三个配置模板，不等于完整的 `/etc`。
+The repository root is an archive root, not the root of a running operating system. `home/hatch/` represents the original agent home; `opt/hatch/` contains its bundle; `opt/hatch-image/` contains image-side tools. In the original documents, `~` normally means `/home/hatch`, not the home directory on your current laptop. Absolute `/run`, `/var/lib`, and `/etc` paths describe runtime dependencies and are mostly absent here. In particular, `opt/hatch/runtime-cell/etc/` contains three configuration templates; it is not a complete `/etc` tree.
 
-### 仓库根文件
+### Repository root files
 
-| 文件或目录 | 作用与阅读要点 |
+| File or directory | Purpose and reading notes |
 |---|---|
-| [README.md](README.md) / [README.en.md](README.en.md) | 双语入口、技能目录、文件导航、下载与边界说明。 |
-| [PROJECT_ANALYSIS.md](PROJECT_ANALYSIS.md) | 本次静态分析报告：架构判断、缺项、风险、检查范围与证据索引。 |
-| [SHA256SUMS](SHA256SUMS) | 已发布普通文件的内容校验清单；不覆盖自身和符号链接，也不是来源签名。 |
-| [.gitattributes](.gitattributes) | 保留原始字节，不做文本换行转换；将 ELF 程序和共享库交给 LFS。 |
-| [.gitignore](.gitignore) | 排除 macOS 元数据；没有忽略随包 npm 依赖。 |
+| [README.md](README.md) / [README.en.md](README.en.md) | Bilingual entry points, skill catalog, file navigation, download instructions, and limitations. |
+| [PROJECT_ANALYSIS.md](PROJECT_ANALYSIS.md) | Static analysis report: architecture findings, missing components, risks, validation scope, and evidence. |
+| [SHA256SUMS](SHA256SUMS) | Content checksums for published regular files; excludes itself and symlinks and is not a provenance signature. |
+| [.gitattributes](.gitattributes) | Preserves file bytes without text line-ending conversion; routes ELF programs and shared libraries through LFS. |
+| [.gitignore](.gitignore) | Excludes macOS metadata; bundled npm dependencies are intentionally retained. |
 
-### Agent 配置与用户工作区
+### Agent configuration and workspace
 
-| 文件或目录 | 作用与阅读要点 |
+| File or directory | Purpose and reading notes |
 |---|---|
-| [home/hatch/config/home.yaml](home/hatch/config/home.yaml) | 根 Agent 与子 Agent 的推理 effort 配置，以及渠道 provider 容器；当前 providers 为空，不代表实际部署能力全貌。 |
-| [home/hatch/config/skills.yaml](home/hatch/config/skills.yaml) | 31 个技能 available 状态声明；不是 OAuth 凭据、账户连接状态或权限授予记录。 |
-| [home/hatch/PROACTIVE_PREFERENCES.md](home/hatch/PROACTIVE_PREFERENCES.md) | 主动联系的主题、禁忌、时间和格式偏好模板；当前主题栏为空。 |
-| [home/hatch/assets/onboarding_tour/memory_import.md](home/hatch/assets/onboarding_tour/memory_import.md) | 从其他 AI 迁移上下文的提示词及用户审阅流程；不包含实际导入记忆。 |
-| [home/hatch/workspace/muse-security-audit.md](home/hatch/workspace/muse-security-audit.md) | 保留的历史审查报告；其记录涉及原环境，不证明那些路径都包含在本仓库中。 |
+| [home/hatch/config/home.yaml](home/hatch/config/home.yaml) | Reasoning effort for root/subagents and a channel-provider configuration container; providers is empty in this snapshot, not a complete live capability inventory. |
+| [home/hatch/config/skills.yaml](home/hatch/config/skills.yaml) | Declares 31 available skill entries; it is not an OAuth credential store, connection-state query, or permission-grant record. |
+| [home/hatch/PROACTIVE_PREFERENCES.md](home/hatch/PROACTIVE_PREFERENCES.md) | Template for proactive topics, exclusions, timing, and presentation preferences; topic fields are empty here. |
+| [home/hatch/assets/onboarding_tour/memory_import.md](home/hatch/assets/onboarding_tour/memory_import.md) | Prompt and user-review workflow for importing context from another AI; not an imported memory dataset. |
+| [home/hatch/workspace/muse-security-audit.md](home/hatch/workspace/muse-security-audit.md) | Preserved historical review of the original environment; referenced paths are not necessarily included in this archive. |
 
 ### 产品与设备说明文档
 
