@@ -39,33 +39,6 @@ One major source of the difference is `hatch-multicall`: **17 paths, including t
 
 No `.rs`, `.ts`, `.tsx`, `.js`, `.py`, or `.go` source files were found under `home` or `opt/hatch`. npm does ship JavaScript source, but that belongs to a third-party tool, not to Muse/Hatch core source. The root has neither a `.git` directory nor a project build entry point.
 
-## 3. 产品模型与能力范围
-
-### 3.1 从一次对话延伸到持续工作
-
-材料描述的使用闭环为：
-
-**用户表达意图 → 读取个人上下文 → 制定或更新目标 → 调用工具完成工作 → 交付文件/应用/通知 → 保存记忆与执行记录 → 后台更新建议。**
-
-其中几个能力需要分别理解：
-
-| 能力 | 材料中的设计 | 不能据此推出的结论 |
-|---|---|---|
-| Goals | 目标、一级子目标、进展与 briefing | 创建目标本身不会自动执行工作 |
-| 定时任务 | 按间隔检查，保存运行历史，向用户发送结果 | 不是连续事件流，也不保证秒级发现 |
-| Feed / Ideas | 主动整理内容、提出可实施建议 | 没有本次真实用户效果或采纳率证据 |
-| Memory / Relationships | 跨会话记忆、人物关系、阶段性整理 | 不能证明遗忘操作覆盖所有存储副本 |
-| Artifacts / Spaces | 文档、静态页面、带状态交互应用 | 当前快照不能构建或运行完整链路 |
-| 连接器与设备 | 邮箱、日历、社交、健康、金融、智能家居等 | 安装技能不等于账户已连接或获得操作授权 |
-
-`skills.yaml` 中有 31 个 `status: available` 条目，但这只是本地配置声明。连接状态、OAuth scopes、用户权限、地区和部署渠道还会共同影响可用性。[E1][E2]
-
-### 3.2 主动能力不是模型自我训练
-
-`self_improvement.md` 描述了记忆维护、关系整理、Ideas 策划、目标研究、夜间回顾、技能审阅等后台流程。可见设计主要是更新笔记、结构化记录和工作流。
-
-**推断：** 这里的“自我改进”更接近个性化上下文与流程的持续维护。现有材料不能支持“自动更新模型权重”或“智能水平持续提升”的判断。值得借鉴的是保留建议缘由与执行轨迹，并明确区分“排队/执行成功”和“用户已收到”。[E3]
-
 ## 3. Product model and capability scope
 
 ### 3.1 From one conversation to ongoing work
