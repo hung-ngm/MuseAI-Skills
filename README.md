@@ -17,60 +17,60 @@ Skill documentation and a Muse / Hatch runtime snapshot associated with [muse.ai
 
 <a id="skills"></a>
 
-## Skills：本仓库的重点阅读内容
+## Skills: the main reading collection
 
-对研究 Agent 工作流设计而言，随包技能文本是这份快照中尤其值得阅读的部分：它们具体描述了 **何时触发、如何分流任务、使用哪些工具、怎样处理授权与失败，以及如何验收交付物**。阅读这些内容不需要下载体积较大的二进制。
+The skill texts are a particularly useful part of this snapshot for studying agent workflow design: they describe **when to trigger, how to route tasks, which tools to use, how to handle authorization and failure, and how to verify deliverables**. They can be inspected without downloading the large executables.
 
-目录里共有 **72 个 `SKILL.md` 路径：68 个独立技能文件，加上 4 个符号链接别名**。下面的分类表完整覆盖 68 个独立文件，别名单独列出。名称使用目录路径，可能与 frontmatter 中的名称不同。这里称为“随包技能”，表示它们在快照中的位置；尚未独立认证其官方来源，也不将其称为已验证的官方开源发布。
+There are **72 `SKILL.md` paths: 68 distinct skill files plus 4 symlink aliases**. The tables below cover all 68 distinct files; the aliases are listed separately. Names are directory paths, which can differ from frontmatter names. “Bundled skills” describes their location in the snapshot, not independently authenticated official provenance or a verified open-source release.
 
-### 建议优先阅读
+### Suggested reading path
 
-以下按工作流设计的参考价值选择，不代表运行效果排名，也不代表可以直接安装使用。
+These selections emphasize workflow design that is useful to examine, not proven execution quality or drop-in compatibility.
 
-| 技能 | 值得研究的设计 |
+| Skill | What to study |
 |---|---|
-| [wide-research](opt/hatch/skills/wide-research/SKILL.md) | 如何限定协调者与 worker、统一输出契约，并报告失败覆盖。 |
-| [skill-creator](opt/hatch/skills/skill-creator/SKILL.md) | 如何让触发条件明确、主文件精简、参考资料按需加载。 |
-| [artifacts/testing](opt/hatch/skills/artifacts/testing/SKILL.md) | 如何将“生成成功”与“交付物可用”分开验收。 |
-| [goals](opt/hatch/skills/goals/SKILL.md) | 如何按领域区分首次建目标与后续跟进，避免重复 intake。 |
-| [forget](opt/hatch/skills/forget/SKILL.md) | 如何处理副本、衍生状态与可能重新写回信息的后台任务。 |
-| [travel-planning](opt/hatch/skills/travel-planning/SKILL.md) | 如何把行程研究与实时可订查询、交易分开路由。 |
-| [magic-moment](opt/hatch/skills/magic-moment/SKILL.md) | 如何从事实素材、叙事、视觉到时间线与渲染前审阅组织流水线。 |
-| [gmail](opt/hatch/skills/gmail/SKILL.md) | 如何结合技能正文、方法级权限 manifest 与行为评测场景阅读。 |
+| [wide-research](opt/hatch/skills/wide-research/SKILL.md) | Coordinator/worker boundaries, consistent output contracts, and failure coverage. |
+| [skill-creator](opt/hatch/skills/skill-creator/SKILL.md) | Clear triggers, concise operational files, and on-demand references. |
+| [artifacts/testing](opt/hatch/skills/artifacts/testing/SKILL.md) | Separate successful generation from usable, visually verified deliverables. |
+| [goals](opt/hatch/skills/goals/SKILL.md) | Separate initial goal intake from ongoing support by life domain. |
+| [forget](opt/hatch/skills/forget/SKILL.md) | Account for copies, derived state, and background work that can recreate information. |
+| [travel-planning](opt/hatch/skills/travel-planning/SKILL.md) | Route itinerary research separately from live availability and transactions. |
+| [magic-moment](opt/hatch/skills/magic-moment/SKILL.md) | Organize facts, narrative, visuals, timelines, and pre-render review. |
+| [gmail](opt/hatch/skills/gmail/SKILL.md) | Read instructions together with method-level permissions and evaluation scenarios. |
 
-### Agent 工作流与记忆（6）
+### Agent workflows and memory (6)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [wide-research](opt/hatch/skills/wide-research/SKILL.md) | 多输入并行研究；统一输出字段、覆盖率与失败项。 | — |
-| [goals](opt/hatch/skills/goals/SKILL.md) | 分生活领域创建目标、记录承诺并持续跟进进展。 | [创建指南](opt/hatch/skills/goals/creation) · [跟进指南](opt/hatch/skills/goals/guides) |
-| [skill-creator](opt/hatch/skills/skill-creator/SKILL.md) | 技能触发描述、目录拆分、工具/认证说明和编写检查。 | [参考](opt/hatch/skills/skill-creator/references) |
-| [self-awareness](opt/hatch/skills/self-awareness/SKILL.md) | 根据实际文件和状态回答 Agent 能力、记忆与已完成工作。 | [参考](opt/hatch/skills/self-awareness/references) |
-| [forget](opt/hatch/skills/forget/SKILL.md) | 规划、确认与验证跨记忆及衍生内容的遗忘流程。 | [参考](opt/hatch/skills/forget/references) |
-| [muse_db](opt/hatch/skills/muse_db/SKILL.md) | 受限只读查询与跨表追踪，诊断执行和交付记录。 | [参考](opt/hatch/skills/muse_db/references) |
+| [wide-research](opt/hatch/skills/wide-research/SKILL.md) | Research many independent inputs with a shared output schema, coverage counts, and failure reporting. | — |
+| [goals](opt/hatch/skills/goals/SKILL.md) | Create goals by life domain, record commitments, and follow progress. | [Creation](opt/hatch/skills/goals/creation) · [Guides](opt/hatch/skills/goals/guides) |
+| [skill-creator](opt/hatch/skills/skill-creator/SKILL.md) | Author skill triggers, resource layout, tooling/auth sections, and validation checks. | [References](opt/hatch/skills/skill-creator/references) |
+| [self-awareness](opt/hatch/skills/self-awareness/SKILL.md) | Ground answers about agent capabilities, memory, and past work in observed state. | [References](opt/hatch/skills/self-awareness/references) |
+| [forget](opt/hatch/skills/forget/SKILL.md) | Plan, confirm, and verify forgetting across memory and derived content. | [References](opt/hatch/skills/forget/references) |
+| [muse_db](opt/hatch/skills/muse_db/SKILL.md) | Use bounded read-only database queries to trace execution and delivery records. | [References](opt/hatch/skills/muse_db/references) |
 
-### 文档、表格与产物验收（6）
+### Documents, spreadsheets, and artifact verification (6)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [artifacts/document](opt/hatch/skills/artifacts/document/SKILL.md) | Word 文档、模板、OOXML 编辑、修订与渲染验证。 | [参考](opt/hatch/skills/artifacts/document/references) |
-| [artifacts/markdown](opt/hatch/skills/artifacts/markdown/SKILL.md) | Markdown 文档、README、纪要与交付前回读。 | — |
-| [artifacts/pdf](opt/hatch/skills/artifacts/pdf/SKILL.md) | PDF 编排、现有文件处理、表单填写与几何校验。 | [参考](opt/hatch/skills/artifacts/pdf/references) |
-| [artifacts/presentation](opt/hatch/skills/artifacts/presentation/SKILL.md) | 逐页 HTML、主题规划、幻灯片组装与 PPTX 导出。 | [参考](opt/hatch/skills/artifacts/presentation/references) |
-| [artifacts/spreadsheet](opt/hatch/skills/artifacts/spreadsheet/SKILL.md) | 表格创建、清洗、公式重算与工作簿验证。 | [参考](opt/hatch/skills/artifacts/spreadsheet/references) |
-| [artifacts/testing](opt/hatch/skills/artifacts/testing/SKILL.md) | 按产物类型检查、重新渲染、目视验收与占位符扫描。 | — |
+| [artifacts/document](opt/hatch/skills/artifacts/document/SKILL.md) | Create and edit Word documents/templates, OOXML, tracked changes, and rendered output. | [References](opt/hatch/skills/artifacts/document/references) |
+| [artifacts/markdown](opt/hatch/skills/artifacts/markdown/SKILL.md) | Produce Markdown files, READMEs, notes, and read-back verification. | — |
+| [artifacts/pdf](opt/hatch/skills/artifacts/pdf/SKILL.md) | Author and manipulate PDFs, fill forms, and validate page geometry. | [References](opt/hatch/skills/artifacts/pdf/references) |
+| [artifacts/presentation](opt/hatch/skills/artifacts/presentation/SKILL.md) | Build slides from per-slide HTML, theme plans, assembly, and PPTX export. | [References](opt/hatch/skills/artifacts/presentation/references) |
+| [artifacts/spreadsheet](opt/hatch/skills/artifacts/spreadsheet/SKILL.md) | Create and clean spreadsheets, recalculate formulas, and validate workbooks. | [References](opt/hatch/skills/artifacts/spreadsheet/references) |
+| [artifacts/testing](opt/hatch/skills/artifacts/testing/SKILL.md) | Apply per-format checks, fresh rendering, visual inspection, and placeholder scans. | — |
 
-### 旅行、本地搜索与预订（7）
+### Travel, local discovery, and booking (7)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [travel-planning](opt/hatch/skills/travel-planning/SKILL.md) | 行程规划、可行性、入境/转机与交通衔接。 | [评测场景](opt/hatch/skills/travel-planning/eval) · [参考](opt/hatch/skills/travel-planning/references) |
-| [booking](opt/hatch/skills/booking/SKILL.md) | 航班、酒店、餐厅及门票的实时可订选项与交易入口。 | [评测场景](opt/hatch/skills/booking/eval) · [参考](opt/hatch/skills/booking/references) |
-| [places-search](opt/hatch/skills/places-search/SKILL.md) | 按地点寻找和比较餐厅、咖啡馆、景点及本地服务。 | [评测场景](opt/hatch/skills/places-search/eval) |
-| [duffel](opt/hatch/skills/duffel/SKILL.md) | 航班搜索、预订、付款、订单管理及明确请求的票价监测。 | [权限清单](opt/hatch/skills/duffel/manifest.yaml) · [评测场景](opt/hatch/skills/duffel/eval) |
-| [flightaware](opt/hatch/skills/flightaware/SKILL.md) | 核实具体日期的航班时刻、延误、取消与运行变化。 | [权限清单](opt/hatch/skills/flightaware/manifest.yaml) · [评测场景](opt/hatch/skills/flightaware/eval) |
-| [opentable](opt/hatch/skills/opentable/SKILL.md) | 餐厅可订时段查询，以及创建、修改和取消预订。 | [权限清单](opt/hatch/skills/opentable/manifest.yaml) · [评测场景](opt/hatch/skills/opentable/eval) |
-| [ticketmaster](opt/hatch/skills/ticketmaster/SKILL.md) | 活动、座位和价格搜索，交付购票链接；不直接完成购买。 | [权限清单](opt/hatch/skills/ticketmaster/manifest.yaml) |
+| [travel-planning](opt/hatch/skills/travel-planning/SKILL.md) | Plan itineraries, feasibility, entry/transit requirements, and ground logistics. | [Eval](opt/hatch/skills/travel-planning/eval) · [References](opt/hatch/skills/travel-planning/references) |
+| [booking](opt/hatch/skills/booking/SKILL.md) | Route live availability and transactions for flights, hotels, restaurants, and tickets. | [Eval](opt/hatch/skills/booking/eval) · [References](opt/hatch/skills/booking/references) |
+| [places-search](opt/hatch/skills/places-search/SKILL.md) | Find and compare venues, attractions, and local services by location. | [Eval](opt/hatch/skills/places-search/eval) |
+| [duffel](opt/hatch/skills/duffel/SKILL.md) | Search, book, pay for, and manage flights; monitor booked fares when requested. | [Manifest](opt/hatch/skills/duffel/manifest.yaml) · [Eval](opt/hatch/skills/duffel/eval) |
+| [flightaware](opt/hatch/skills/flightaware/SKILL.md) | Verify dated flight schedules, delays, cancellations, and operational changes. | [Manifest](opt/hatch/skills/flightaware/manifest.yaml) · [Eval](opt/hatch/skills/flightaware/eval) |
+| [opentable](opt/hatch/skills/opentable/SKILL.md) | Find restaurant availability and create, change, or cancel reservations. | [Manifest](opt/hatch/skills/opentable/manifest.yaml) · [Eval](opt/hatch/skills/opentable/eval) |
+| [ticketmaster](opt/hatch/skills/ticketmaster/SKILL.md) | Search events, seats, and prices; return checkout links without completing purchases. | [Manifest](opt/hatch/skills/ticketmaster/manifest.yaml) |
 
 ### 办公、邮箱与知识工具（16）
 
