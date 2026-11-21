@@ -437,20 +437,20 @@ Use the Git tree and `SHA256SUMS` for the exact published file set. Database cou
 
 <a id="architecture"></a>
 
-## 系统设计概要
+## Design overview
 
-材料呈现的工作流是：用户提出任务，Agent 读取个人上下文，结合目标与记忆调用工具，将结果交付为消息、文档或应用，再由后台流程维护记忆、关系和建议。
+The materials describe an agent that receives user requests, consults personal context, works with goals and memory, invokes tools, delivers messages or artifacts, and maintains contextual knowledge and suggestions in background workflows.
 
-| 层次 | 可见材料 |
+| Layer | Visible materials |
 |---|---|
-| 产品与个人上下文 | Goals、Feed、Ideas、Memory、Relationships |
-| Agent 执行 | Hatch daemon、执行服务、连接器 CLI、浏览器与设备工具 |
-| 能力契约 | `SKILL.md` 和方法级权限、OAuth scopes 等 manifest |
-| 持久化与追踪 | PostgreSQL schema 文档、运行与投递记录设计 |
-| 运行隔离 | systemd-nspawn、宿主/客体生命周期、代理与信任配置 |
-| 生成应用 | Artifacts、Spaces、TypeScript SDK 和数据库迁移的说明文档 |
+| Product and personal context | Goals, Feed, Ideas, Memory, Relationships |
+| Agent execution | Hatch daemon, execution service, connector CLIs, browser and device tools |
+| Capability contracts | Skills and manifests with method-level permissions and OAuth scopes |
+| Persistence and observability | PostgreSQL schema documentation and execution/delivery record designs |
+| Runtime isolation | systemd-nspawn, host/guest lifecycle, proxy and trust configuration |
+| Generated applications | Artifact, Spaces, TypeScript SDK, and database migration documentation |
 
-这些文件可以说明设计意图和部分实现形态，不能证明相应功能在线可用、账户已连接、权限已授予或测试已经通过。
+The files provide evidence of design intent and parts of the implementation structure. They do not establish that a feature is currently operational, an account is connected, permissions are granted, or tests have passed.
 
 <a id="download"></a>
 
