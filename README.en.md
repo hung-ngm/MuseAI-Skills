@@ -1,10 +1,10 @@
-# [🚀观看我的哔哩哔哩视频](https://space.bilibili.com/3493277319825652)
+# [🚀 Watch my Bilibili videos](https://space.bilibili.com/3493277319825652)
 
 # MuseAI-Skills
 
 Skill documentation and a Muse / Hatch runtime snapshot associated with [muse.ai (Muse AI)](https://muse.ai).
 
-[简体中文](README.md) · [Technical analysis (Chinese)](PROJECT_ANALYSIS.md) · [File checksums](SHA256SUMS)
+[README](README.md) · [Technical analysis](PROJECT_ANALYSIS.md) · [File checksums](SHA256SUMS)
 
 **Navigate:** [Skills](#skills) · [Files](#files) · [Architecture](#architecture) · [Download](#download)
 
@@ -320,9 +320,9 @@ These 26 files document the product contract in the supplied snapshot. Account-s
 
 | File or directory | Purpose and reading notes |
 |---|---|
-| [SKILL.md（以 Gmail 为例 / Gmail example）](opt/hatch/skills/gmail/SKILL.md) | Skill entry point: frontmatter defines triggers; the body defines procedure and boundaries. |
-| [manifest.yaml（Gmail）](opt/hatch/skills/gmail/manifest.yaml) | Machine-readable connector metadata, permission defaults, scope requirements, and command mappings; method-level rules can override group defaults. |
-| [eval/scenarios.yaml（Gmail）](opt/hatch/skills/gmail/eval/scenarios.yaml) | Behavioral scenarios, user objectives, and expected behavior; definitions are not passing test results. |
+| [SKILL.md (Gmail example)](opt/hatch/skills/gmail/SKILL.md) | Skill entry point: frontmatter defines triggers; the body defines procedure and boundaries. |
+| [manifest.yaml (Gmail)](opt/hatch/skills/gmail/manifest.yaml) | Machine-readable connector metadata, permission defaults, scope requirements, and command mappings; method-level rules can override group defaults. |
+| [eval/scenarios.yaml (Gmail)](opt/hatch/skills/gmail/eval/scenarios.yaml) | Behavioral scenarios, user objectives, and expected behavior; definitions are not passing test results. |
 | [opt/hatch/skills/flightaware/eval/findings.md](opt/hatch/skills/flightaware/eval/findings.md) | Historical evaluation findings and infrastructure blockers; interpret with their version and environment. |
 | [opt/hatch/skills/skill-creator/references/authoring_guide.md](opt/hatch/skills/skill-creator/references/authoring_guide.md) | Naming, resource separation, templates, and review checks for skill authors. |
 | [opt/hatch/skills/goals/creation](opt/hatch/skills/goals/creation) / [opt/hatch/skills/goals/guides](opt/hatch/skills/goals/guides) | The first contains domain-specific goal intake guides; the second contains scaffolds for ongoing support. |
