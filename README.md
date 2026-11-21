@@ -1,19 +1,19 @@
-# [🚀观看我的哔哩哔哩视频](https://space.bilibili.com/3493277319825652)
+# [🚀 Watch my Bilibili videos](https://space.bilibili.com/3493277319825652)
 
 # MuseAI-Skills
 
-### 🔥🔥🔥🔥没注册Muse的可以用我的邀请码注册，可以获取10亿token！邀请码: ZLSD3V
+### 🔥🔥🔥🔥 If you have not registered for Muse yet, use my invite code to sign up and get 1 billion tokens! Invite code: ZLSD3V
 
 
-[muse.ai（Muse AI）](https://muse.ai) 的技能文档与 Muse / Hatch 运行环境快照。
+Skill documentation and a Muse / Hatch runtime snapshot associated with [muse.ai (Muse AI)](https://muse.ai).
 
-[English](README.en.md) · [中文分析报告](PROJECT_ANALYSIS.md) · [文件校验清单](SHA256SUMS)
+[English](README.en.md) · [Technical analysis](PROJECT_ANALYSIS.md) · [File checksums](SHA256SUMS)
 
-**快速导航：**[技能目录](#skills) · [文件结构与作用](#files) · [系统架构](#architecture) · [下载与校验](#download)
+**Navigate:** [Skills](#skills) · [Files](#files) · [Architecture](#architecture) · [Download](#download)
 
-本仓库中的 **Muse AI 指 [muse.ai](https://muse.ai)**；这一站点对应关系也见随包的[产品概览](home/hatch/docs/muse.md)。仓库存档了该 Muse / Hatch 个人 AI Agent 环境的部分文件，包括产品说明、技能定义、连接器权限清单、Linux 运行环境脚本，以及随包程序和依赖，供结构阅读与技术分析。
+**Muse AI in this repository refers to [muse.ai](https://muse.ai)**, the website identified in the bundled [product overview](home/hatch/docs/muse.md). This repository archives a partial filesystem snapshot of that Muse / Hatch personal AI agent environment. It contains product documentation, skill definitions, connector permission manifests, Linux runtime scripts, and bundled executables and dependencies for inspection and technical analysis.
 
-**它不是完整源码仓库，也不是可以一键部署的安装包。** 核心程序主要以 Linux x86-64 ELF 二进制提供；构建源码、完整宿主配置、rootfs 和部分运行资源不在这份快照中。仓库附带的材料自述使用 Muse、Hatch、Jarvis 等名称；本存档不代表官方发布或认可，也未独立验证这些材料的来源与产品声明。
+**This is neither a complete source repository nor a one-command deployment package.** Most core programs are Linux x86-64 ELF binaries. Their source code, complete host configuration, root filesystem, and some runtime resources are absent. The supplied materials use the names Muse, Hatch, and Jarvis; this archive does not represent an official release or endorsement, and its provenance and product claims have not been independently verified.
 
 <a id="skills"></a>
 
