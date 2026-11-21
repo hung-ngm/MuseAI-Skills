@@ -156,41 +156,41 @@ These selections emphasize workflow design that is useful to examine, not proven
 | [share-ideas](opt/hatch/skills/share-ideas/SKILL.md) | Publish reusable native Muse Ideas on explicit request. | — |
 | [subscription-status](opt/hatch/skills/subscription-status/SKILL.md) | Inspect plans, quota, usage, reset times, and billing-related status. | — |
 
-### 别名与额外资源
+### Aliases and additional resources
 
-| 别名入口 | 实际指向 |
+| Alias | Actual target |
 |---|---|
 | [facebook](opt/hatch/skills/facebook/SKILL.md) | [facebook-cli](opt/hatch/skills/facebook-cli/SKILL.md) |
 | [meta-threads](opt/hatch/skills/meta-threads/SKILL.md) | [threads](opt/hatch/skills/threads/SKILL.md) |
 | [podcast](opt/hatch/skills/podcast/SKILL.md) | [generate_podcast](opt/hatch/skills/generate_podcast/SKILL.md) |
 | [voice-calls](opt/hatch/skills/voice-calls/SKILL.md) | [voice-selector](opt/hatch/skills/voice-selector/SKILL.md) |
 
-`voice-calls` 实际指向静态语音目录，不能根据名字推断它提供 Agent 代打电话能力。[Spaces 目录](opt/hatch/skills/spaces) 含运行时文档与模板，但没有顶层 `SKILL.md`，因此不额外计为一个技能。[Artifacts 共享参考](opt/hatch/skills/artifacts/references) 包含图表、地图、实时数据、Markdown 等输出说明。全目录另有 40 个 manifest 路径和 12 份 eval YAML；这些是配套文件数，不是额外技能数，也不代表评测已经通过。
+`voice-calls` points to a static voice catalog; its name does not establish an agent-operated calling capability. The [Spaces directory](opt/hatch/skills/spaces) includes runtime documentation and templates but has no top-level `SKILL.md`, so it is not counted as a separate skill here. The [shared Artifact references](opt/hatch/skills/artifacts/references) contain guidance for charts, maps, live data, Markdown, and related output. There are 40 manifest paths and 12 eval YAML files across the tree; these are resource counts, not extra skill counts or evidence of passing tests.
 
-### 如何阅读与迁移
+### Reading and adapting the skills
 
-- 先看技能的触发条件、边界与输出契约，再结合它引用的参考文档及权限 manifest 阅读。
-- 工作流模式可以用于改进自己的 Agent 指令，但需要按目标环境调整工具名、工作区路径、授权规则和验收步骤。
-- 连接器技能依赖对应 CLI/MCP、账户连接、OAuth scopes 和运行时授权。复制 Markdown 不会自动获得这些能力。
-- 部分引用的辅助程序并未包含：Artifacts 验证脚本、skill-creator 的连接器脚手架，以及 Magic Moment 的 `mm` 可执行程序均缺失；Spaces 也缺少 SDK/构建资源。技能文档可阅读，执行链路并不完整。
-- 保留来源归属和适用许可。“存档中可见”不等于“官方来源已认证、可独立运行或可任意重新授权”。
+- Start with the skill's trigger, boundaries, and output contract; follow its local references and manifest where present.
+- Workflow patterns can inform your own agent instructions. Adapt tool names, workspace paths, authorization rules, and validation steps to the target environment.
+- Connector skills depend on the corresponding CLI/MCP, account connections, OAuth scopes, and runtime authorization. A copied Markdown file does not provide these capabilities.
+- Some referenced helpers are absent: the Artifact validation scripts, the skill-creator connector scaffold helper, and Magic Moment's `mm` executable are not included. Spaces also lacks its SDK/build resources. The documentation is readable, but these execution pipelines are not complete.
+- Keep source attribution and applicable licensing terms. “Available in this archive” does not mean “officially verified, independently runnable, or freely relicensable.”
 
-只想研究这些技能，可以跳过全部 LFS 二进制下载：
+To inspect all skills without downloading LFS binaries:
 
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/win4r/MuseAI-Skills.git
 cd MuseAI-Skills
 ```
 
-打开 `opt/hatch/skills/` 或点击上方目录即可，无需执行随包程序。
+Open `opt/hatch/skills/` or follow the links above. No bundled binary needs to be executed for this reading workflow.
 
-## 从哪里开始
+## Start here
 
-- 想快速理解系统：阅读 [项目分析报告](PROJECT_ANALYSIS.md)，包含架构图、能力边界、交付缺项和证据索引。
-- 想了解产品设计：从 [产品概览](home/hatch/docs/muse.md)、[目标](home/hatch/docs/goals.md)、[后台调度](home/hatch/docs/scheduling-and-watching.md) 和 [后台整理](home/hatch/docs/self_improvement.md) 开始。
-- 想研究工具与权限：阅读 [连接器说明](home/hatch/docs/connectors.md)、[Gmail 技能](opt/hatch/skills/gmail/SKILL.md) 和 [权限 manifest](opt/hatch/skills/gmail/manifest.yaml)。
-- 想研究运行架构：阅读 [runtime-cell 启动脚本](opt/hatch/runtime-cell/launch-daemon.sh)、[daemon 控制脚本](opt/hatch/runtime-cell/control-daemon.sh) 和 [数据库关系文档](opt/hatch/skills/muse_db/references/schema.md)。
-- 想研究生成式应用：阅读 [Artifacts 说明](home/hatch/docs/artifacts.md) 与 [TypeScript Web Artifact Runtime](opt/hatch/skills/spaces/ts-runtime/README.md)，注意两者的发布能力描述存在差异。
+- For architecture, capability boundaries, missing components, and evidence references, read the [Chinese analysis report](PROJECT_ANALYSIS.md).
+- For product design, start with the [overview](home/hatch/docs/muse.md), [goals](home/hatch/docs/goals.md), [scheduling](home/hatch/docs/scheduling-and-watching.md), and [background maintenance](home/hatch/docs/self_improvement.md).
+- For tools and authorization, read the [connector guide](home/hatch/docs/connectors.md), [Gmail skill](opt/hatch/skills/gmail/SKILL.md), and its [permission manifest](opt/hatch/skills/gmail/manifest.yaml).
+- For runtime architecture, inspect the [runtime-cell launcher](opt/hatch/runtime-cell/launch-daemon.sh), [daemon controller](opt/hatch/runtime-cell/control-daemon.sh), and [database schema guide](opt/hatch/skills/muse_db/references/schema.md).
+- For generated applications, compare the [Artifacts guide](home/hatch/docs/artifacts.md) with the [TypeScript runtime README](opt/hatch/skills/spaces/ts-runtime/README.md). Their descriptions of publication capabilities differ.
 
 <a id="files"></a>
 
