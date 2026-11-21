@@ -47,12 +47,12 @@ The materials describe this loop:
 
 **The user states an intent → personal context is read → a goal is created or updated → tools do the work → a file, application, or notification is delivered → memory and an execution record are saved → background processes update suggestions.**
 
-Several capabilities have to be read separately:
+Several capabilities have to be understood separately:
 
 | Capability | Design in the materials | What this does not establish |
 |---|---|---|
 | Goals | Goals, first-level subgoals, progress, and briefings | Creating a goal does not itself carry out the work |
-| Scheduled tasks | Check on an interval, save run history, and send the user the result | Not a continuous event stream, and not a guarantee of second-level detection |
+| Scheduled tasks | Check on an interval, save run history, and send the user the result | Not a continuous event stream, and not a guarantee that a change is noticed within a second |
 | Feed / Ideas | Proactively organize content and propose actionable suggestions | No evidence in this review of real user outcomes or adoption |
 | Memory / Relationships | Cross-session memory, relationships between people, and periodic organization | Does not prove that a forget operation covers every stored copy |
 | Artifacts / Spaces | Documents, static pages, and stateful interactive applications | This snapshot cannot build or run the full pipeline |
@@ -60,11 +60,11 @@ Several capabilities have to be read separately:
 
 `skills.yaml` contains 31 `status: available` entries, but those are only local configuration declarations. Connection state, OAuth scopes, user permissions, region, and deployment channel also affect availability together. [E1][E2]
 
-### 3.2 Proactive capability is not the model training itself
+### 3.2 Proactive capability is not model self-training
 
 `self_improvement.md` describes background processes for memory maintenance, relationship organization, Ideas planning, goal research, a nightly review, and skill review. The visible design mainly updates notes, structured records, and workflows.
 
-**Inference:** "Self-improvement" here is closer to continued maintenance of personalized context and process. The materials on hand cannot support a judgment of "automatically updating model weights" or "intelligence that keeps rising." What is worth borrowing is that suggested reasons and execution traces are retained, and that "queued or executed successfully" is distinguished from "the user has received it." [E3]
+**Inference:** "Self-improvement" here is closer to continued maintenance of personalized context and process. The materials on hand cannot support a judgment of "automatically updating model weights" or "intelligence that keeps rising." What is worth borrowing is that the reason for a suggestion and the execution trace are kept, and that "queued or executed successfully" is distinguished from "the user has received it." [E3]
 
 ## 4. Technical architecture
 
