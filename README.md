@@ -7,7 +7,7 @@
 
 Skill documentation and a Muse / Hatch runtime snapshot associated with [muse.ai (Muse AI)](https://muse.ai).
 
-[English](README.en.md) · [Technical analysis](PROJECT_ANALYSIS.md) · [File checksums](SHA256SUMS)
+[Technical analysis](PROJECT_ANALYSIS.md) · [File checksums](SHA256SUMS)
 
 **Navigate:** [Skills](#skills) · [Files](#files) · [Architecture](#architecture) · [Download](#download)
 
@@ -200,7 +200,7 @@ The tree below expands the important paths; `…` omits additional executables a
 
 ```text
 .
-├── README.md / README.en.md
+├── README.md
 ├── PROJECT_ANALYSIS.md
 ├── SHA256SUMS
 ├── .gitattributes / .gitignore
@@ -270,7 +270,7 @@ The repository root is an archive root, not the root of a running operating syst
 
 | File or directory | Purpose and reading notes |
 |---|---|
-| [README.md](README.md) / [README.en.md](README.en.md) | Bilingual entry points, skill catalog, file navigation, download instructions, and limitations. |
+| [README.md](README.md) | Entry point, skill catalog, file navigation, download instructions, and limitations. |
 | [PROJECT_ANALYSIS.md](PROJECT_ANALYSIS.md) | Static analysis report: architecture findings, missing components, risks, validation scope, and evidence. |
 | [SHA256SUMS](SHA256SUMS) | Content checksums for published regular files; excludes itself and symlinks and is not a provenance signature. |
 | [.gitattributes](.gitattributes) | Preserves file bytes without text line-ending conversion; routes ELF programs and shared libraries through LFS. |
