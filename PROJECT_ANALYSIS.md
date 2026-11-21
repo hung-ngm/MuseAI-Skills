@@ -291,66 +291,66 @@ The existing `muse-security-audit.md` states the conclusion as Clean, but the sc
 
 This review did not perform a complete malicious-code scan, vulnerability verification, live packet capture, or binary reverse engineering. This report therefore does not endorse "completely safe," and it does not treat proxies, authentication, telemetry, and other ordinary infrastructure as malicious only because of their names.
 
-## 6. 优点与可借鉴设计
+## 6. Strengths and designs worth borrowing
 
-1. **能力契约较清楚。** 将业务使用方法与机器可读权限分开，便于独立演进；方法级覆盖也能表达真实操作差异。
-2. **后台工作有可追踪结构。** 文档要求从 run、step、handoff、mailbox、delivery 还原链路，而不是用任务存在证明工作完成。
-3. **隔离与运行恢复被当作系统能力。** 可见脚本处理 namespace、环境注入、启动 readiness、宿主/客体信任和文件路径问题。
-4. **产物有持久状态模型。** 文档把文件、静态页、交互应用、数据库和 Blob 区分开，而非都当成聊天附件。
-5. **评测材料承认环境限制。** 保留无法覆盖的状态、代理故障与授权门控，有利于避免虚假的端到端通过结论。
+1. **Capability contracts are relatively clear.** How a capability is used is separated from machine-readable permissions, so the two can evolve independently. Method-level overrides can also express real differences between operations.
+2. **Background work has a structure that can be traced.** The documents require a chain reconstructed from run, step, handoff, mailbox, and delivery, rather than treating the existence of a task as proof that the work is finished.
+3. **Isolation and runtime recovery are treated as system capabilities.** The visible scripts deal with namespaces, environment injection, startup readiness, host and guest trust, and file-path problems.
+4. **Artifacts have a model of persistent state.** The documents separate files, static pages, interactive applications, databases, and blobs, instead of treating all of them as chat attachments.
+5. **The evaluation materials admit limits of the environment.** States that could not be covered, proxy failures, and authorization gates are kept, which helps avoid a false end-to-end pass.
 
-这些是设计层面的优点，不等于性能、可靠性或用户效果已达到生产标准。
+These are strengths at the level of design. They do not mean performance, reliability, or user outcomes already meet a production standard.
 
-## 7. 接手建议
+## 7. Suggestions for taking this over
 
-### 如果目标是理解或借鉴架构
+### If the goal is to understand the architecture or borrow from it
 
-优先阅读产品契约、连接器 manifest、数据库关系和 runtime-cell 生命周期。最值得提取的是“持久上下文 + 明确能力 + 授权执行 + 后台调度 + 交付证据”的组合，而不是整包复制运行程序。
+Read the product contract, connector manifests, database relations, and the runtime-cell lifecycle first. What is most worth extracting is the combination of persistent context, explicit capabilities, authorized execution, background scheduling, and delivery evidence, rather than copying the whole bundle of programs and running it.
 
-### 如果目标是二次开发或本地复现
+### If the goal is further development or local reproduction
 
-按以下顺序推进：
+Proceed in this order:
 
-1. 获取准确来源、发布版本、校验清单、使用许可和对应源码；确认多个目录是否属于同一构建。
-2. 补齐宿主 unit/nspawn 配置、rootfs、数据库迁移、SDK、构建脚本与评测 runner。
-3. 明确哪些组件能离线运行，哪些依赖控制面、代理、身份、模型和第三方账户。
-4. 在隔离 Linux 环境建立最小启动验证：readiness → daemon → 无外部副作用的工具调用 → 数据读写 → 重启恢复。
-5. 再做权限拒绝、凭据过期、网络失败、调度重试、重复执行与投递验证。
-6. 最后验证生成应用构建和分享，并核对迁移数据、Blob 与本地专属能力边界。
+1. Obtain an accurate source, a release version, a checksum list, the terms of use, and the matching source code. Confirm whether the several directories belong to the same build.
+2. Supply the missing host unit and nspawn configuration, rootfs, database migrations, SDK, build scripts, and evaluation runner.
+3. State which components can run offline and which depend on a control plane, proxies, identity, models, and third-party accounts.
+4. In an isolated Linux environment, establish a minimal startup check: readiness, then the daemon, then a tool call with no external side effect, then reading and writing data, then recovery after restart.
+5. Then test permission denial, credential expiry, network failure, schedule retry, duplicate execution, and delivery.
+6. Finally verify build and sharing of generated applications, and check migrated data, blobs, and the boundary around capabilities that exist only locally.
 
-### 如果目标是评估是否可用于生产
+### If the goal is to judge whether this can be used in production
 
-当前证据不够。至少还需要可追溯构建、真实环境验收、权限与隔离测试、任务成功率/延迟/成本指标、数据恢复测试，以及更新和回滚记录。仅凭文件数量、功能列表和历史 Clean 标签不能作出准入决定。
+The current evidence is not enough. At a minimum, a traceable build, acceptance in a real environment, permission and isolation tests, metrics for task success rate, latency, and cost, a data-recovery test, and records of updates and rollbacks are still required. A file count, a feature list, and a historical Clean label are not enough to make an admission decision.
 
-## 8. 本次验证结果
+## 8. Results of this review
 
-| 检查 | 结果 | 含义 |
+| Check | Result | Meaning |
 |---|---|---|
-| 文件与硬链接盘点 | 完成 | 得到本报告规模与共享镜像数据 |
-| 核心文件格式检查 | 完成 | hatch、hatch-multicall、Codex、Bun 为 Linux x86-64 ELF |
-| 15 个 runtime-cell `.sh` 的 `sh -n` | 全部通过 | 仅证明 Shell 语法可解析，不证明命令存在或行为正确 |
-| 构建/启动路径存在性 | 发现缺项 | 当前快照无法照文档独立复现 |
-| 产品与技术契约交叉阅读 | 发现发布描述不一致 | 需要版本/渠道与真实入口验证 |
-| 核心源码测试、编译 | 未运行 | 无核心源码与完整构建入口 |
-| 服务启动、连接器、数据库、浏览器、设备、实时音视频 | 未运行 | 无完整运行环境和本次账户授权链路 |
-| 动态安全与外部产品事实核验 | 未执行 | 不提供对应保证 |
+| File and hard-link inventory | Completed | Produced the scale and shared-image figures in this report |
+| Core file format checks | Completed | hatch, hatch-multicall, Codex, and Bun are Linux x86-64 ELF binaries |
+| `sh -n` on 15 runtime-cell `.sh` files | All passed | Proves only that the shell syntax can be parsed, not that the commands exist or behave correctly |
+| Presence of build and startup paths | Gaps found | This snapshot cannot be reproduced on its own by following the documents |
+| Cross-reading of the product and technical contracts | Publication descriptions disagree | Version, channel, and a real entry point still need to be checked |
+| Core source tests and compilation | Not run | There is no core source and no complete build entry point |
+| Service startup, connectors, database, browser, devices, and realtime audio and video | Not run | There is no complete runtime environment and no account-authorization path for this review |
+| Dynamic security testing and checks against external product facts | Not performed | No corresponding assurance is offered |
 
-本次仅新增本报告，未修改原有程序、配置或历史报告。
+This review added only this report. Existing programs, configuration, and the historical report were not modified.
 
-## 9. 证据索引
+## 9. Evidence index
 
-以下为工作区内原始材料。路径相对于项目根目录，行号便于定位；引用并不代表认可材料中的全部事实断言。
+The items below are original materials in the workspace. Paths are relative to the project root, and line numbers are there to locate the text. A citation does not mean every factual claim in the cited material is endorsed.
 
-- **E1**：`home/hatch/docs/muse.md:1`；`home/hatch/docs/goals.md:1`；`home/hatch/docs/scheduling-and-watching.md:1`。
-- **E2**：`home/hatch/config/skills.yaml:1`；`home/hatch/docs/connectors.md:1`。
-- **E3**：`home/hatch/docs/self_improvement.md:1`，其中交付边界见第 53 行。
-- **E4**：`opt/hatch/runtime-cell/launch-daemon.sh:34`；`opt/hatch/runtime-cell/control-daemon.sh:1`。
-- **E5**：`opt/hatch/runtime-cell/ensure-rootfs.sh:1`；`opt/hatch/runtime-cell/guest-runtime-env.sh:1`。
-- **E6**：`opt/hatch/skills/gmail/manifest.yaml:102`，写入分组第 133 行、trash 覆盖第 161 行。
-- **E7**：`opt/hatch/runtime-cell/bin-scopes.conf:1`；`opt/hatch/runtime-cell/skill-scopes.conf:1`。
-- **E8**：`opt/hatch/skills/muse_db/SKILL.md:1`；`opt/hatch/skills/muse_db/references/schema.md:1`。
-- **E9**：`opt/hatch/skills/spaces/ts-runtime/README.md:1`，导出与初始数据库迁移见第 42、60、85 行。
-- **E10**：`opt/hatch-image/bin/runtime-cell.kdl:149`，更新策略见第 215 行；缺项经本次路径检查确认。
-- **E11**：`home/hatch/docs/artifacts.md:36`。
-- **E12**：`opt/hatch/skills/flightaware/eval/findings.md:1`；`opt/hatch/skills/gmail/eval/scenarios.yaml:1`。
-- **E13**：`home/hatch/workspace/muse-security-audit.md:4`，检查深度限制见第 7 行。
+- **E1**: `home/hatch/docs/muse.md:1`; `home/hatch/docs/goals.md:1`; `home/hatch/docs/scheduling-and-watching.md:1`.
+- **E2**: `home/hatch/config/skills.yaml:1`; `home/hatch/docs/connectors.md:1`.
+- **E3**: `home/hatch/docs/self_improvement.md:1`. The delivery boundary is at line 53.
+- **E4**: `opt/hatch/runtime-cell/launch-daemon.sh:34`; `opt/hatch/runtime-cell/control-daemon.sh:1`.
+- **E5**: `opt/hatch/runtime-cell/ensure-rootfs.sh:1`; `opt/hatch/runtime-cell/guest-runtime-env.sh:1`.
+- **E6**: `opt/hatch/skills/gmail/manifest.yaml:102`. The write group is at line 133, and the trash override is at line 161.
+- **E7**: `opt/hatch/runtime-cell/bin-scopes.conf:1`; `opt/hatch/runtime-cell/skill-scopes.conf:1`.
+- **E8**: `opt/hatch/skills/muse_db/SKILL.md:1`; `opt/hatch/skills/muse_db/references/schema.md:1`.
+- **E9**: `opt/hatch/skills/spaces/ts-runtime/README.md:1`. Export and the initial database migration are at lines 42, 60, and 85.
+- **E10**: `opt/hatch-image/bin/runtime-cell.kdl:149`. The update policy is at line 215. The missing paths were confirmed by path checks in this review.
+- **E11**: `home/hatch/docs/artifacts.md:36`.
+- **E12**: `opt/hatch/skills/flightaware/eval/findings.md:1`; `opt/hatch/skills/gmail/eval/scenarios.yaml:1`.
+- **E13**: `home/hatch/workspace/muse-security-audit.md:4`. The limit on inspection depth is at line 7.
