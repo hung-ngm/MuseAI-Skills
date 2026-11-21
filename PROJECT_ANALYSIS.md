@@ -118,53 +118,6 @@ That points to an important engineering fact: putting a small application the ag
 
 The current tree provides only the related explanation. The SDK, builder, and build outputs named in the README are missing. What can be analyzed here is the interface design. The build implementation cannot be verified.
 
-## 5. 主要问题与风险
-
-以下优先级针对“接手这份材料并开展开发/复现”，不是漏洞严重性评级。
-
-| 优先级 | 发现 | 影响与建议 |
-|---|---|---|
-| P0 | 核心源码、构建定义、完整宿主配置和 rootfs 缺失 | 无法重建完整系统；先获取匹配版本的源码或完整可验证镜像 |
-| P0 | 主程序是 Linux x86-64 ELF | 无法在当前 macOS 环境原生运行；需要相匹配的 Linux 环境及平台依赖 |
-| P1 | Spaces SDK 文档引用的文件缺失 | 无法按 README 复现 Web Artifact 构建 |
-| P1 | 产品与技术文档对发布能力描述不一致 | 不能可靠承诺交互应用可公开，也不能笼统承诺数据始终不外移 |
-| P1 | 只有部分评测场景和历史结论，没有完整 runner 与本次结果 | 无法给整体能力或稳定性打通过分数 |
-| P1 | 包更新依赖镜像及 reconcile | 需核实真实更新频率、失败告警、回滚及版本清单 |
-| P2 | 缺少根级说明、统一版本与来源证据 | 接手者容易把部署快照当成源码仓库，或误用不同版本文档 |
-| P2 | 权限默认值粒度复杂、渠道 gating 与授权分离 | 应建立方法级权限矩阵和一致性检查 |
-
-### 5.1 具体交付缺项
-
-实际检查，下列路径不存在：
-
-- `opt/hatch/skills/spaces/ts-runtime/build.mjs`
-- `opt/hatch/skills/spaces/ts-runtime/sdk`
-- `opt/hatch/skills/spaces/ts-runtime/dist/space-sdk.tgz`
-- `opt/hatch/skills/spawn-eval-instructions.md`
-- `opt/hatch/runtime-cell/run-execd.sh`
-- `opt/hatch/runtime-cell-exposed`
-- 根级 `etc`、`var` 目录
-
-其中 `runtime-cell.kdl` 生成的 execd service 仍引用 `run-execd.sh`。这证明当前交付不能闭环，但不能排除完整镜像在构建或启动时生成这些内容，故不直接认定线上启动有 bug。[E10]
-
-另发现 `opt/hatch-image/bin/gws` 为零字节文件。这是需要核对打包意图的异常项；不能据此认定全部 Google 集成功能失效，因为另有 `hatch_gws_cli` 等入口。
-
-### 5.2 发布契约冲突
-
-产品文档 `artifacts.md` 声称只允许发布静态产物，交互应用不能公开；技术 README 则描述共享 TypeScript web artifact 到 Cloudflare，并将本地 SQLite 初始状态导出到 D1。[E9][E11]
-
-可能解释包括：实现尚未开放、渠道差异，或文档版本漂移。**现有材料无法选择其中一个解释。** 应当给文档增加对应版本、渠道和启用条件，再通过真实入口验证；不能只挑其中一份作为全局事实。
-
-### 5.3 历史评测不能替代当前验证
-
-FlightAware 的 `eval/findings.md` 记载了路由 405 与身份门控 401，且明确说相应读场景主要覆盖 fallback 与“不编造”行为，没有完成真实数据读取验证。这是有价值的历史诊断，但不能当成当前连接器仍故障的证据，也不能当成其真实调用已通过的证据。[E12]
-
-### 5.4 安全结论的边界
-
-既有 `muse-security-audit.md` 将结论写为 Clean，但范围以 `muse` 文件名或内容匹配为主，二进制仅做元数据与 strings 分析。这样的范围不能覆盖整个 daemon、所有连接器、宿主服务、网络出口或供应链。[E13]
-
-本次没有进行完整恶意代码扫描、漏洞验证、动态抓包或二进制逆向。因此本报告既不背书“完全安全”，也不把代理、认证、遥测等正常基础设施仅凭名称认定为恶意。
-
 ## 5. Main problems and risks
 
 The priorities below are for taking over these materials in order to develop or reproduce the system. They are not a vulnerability-severity rating.
