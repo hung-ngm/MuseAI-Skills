@@ -495,29 +495,29 @@ shasum -a 256 --check SHA256SUMS
 
 The manifest covers published regular files, excluding itself, `.git`, and ignored local metadata. Symlinks are tracked by Git and excluded from this regular-file manifest. Checksums establish content consistency, not provenance or executable safety.
 
-## 可运行性与已知缺项
+## Runtime limitations and missing components
 
-当前快照无法独立启动。不要将 README 中的下载步骤理解为安装或部署步骤。
+This snapshot cannot boot independently. The download instructions are not installation or deployment instructions.
 
-- 核心程序面向 **Linux x86-64**，不能在 macOS 原生运行。
-- 缺少核心源码与完整构建定义，无法重建 daemon 和连接器。
-- 缺少完整宿主服务、rootfs、数据库迁移和控制面依赖。
-- Web Artifact README 引用的 `build.mjs`、`sdk/` 和 `dist/space-sdk.tgz` 不在快照中。
-- 评测 YAML 引用的 `spawn-eval-instructions.md` 不在快照中。
-- `runtime-cell.kdl` 引用的 `run-execd.sh` 不在快照中；不排除完整镜像另行生成该文件。
-- `opt/hatch-image/bin/gws` 是零字节文件；这不代表其他 Google CLI 入口也失效。
-- 产品文档限制为静态产物发布，技术文档则描述带数据库的 Cloudflare 导出；适用版本与开放渠道未确认。
+- Core programs target **Linux x86-64**, not native macOS execution.
+- Core source code and complete build definitions are missing.
+- Complete host services, rootfs, database migrations, and control-plane dependencies are missing.
+- The Web Artifact README references `build.mjs`, `sdk/`, and `dist/space-sdk.tgz`, none of which is included.
+- The evaluation YAML files reference a missing `spawn-eval-instructions.md`.
+- `runtime-cell.kdl` references a missing `run-execd.sh`; a complete image might generate it separately.
+- `opt/hatch-image/bin/gws` is empty. This does not establish that other Google CLI entry points are broken.
+- Product documentation limits publication to static artifacts, while technical documentation describes Cloudflare export with database state. The applicable versions and enabled channels are unconfirmed.
 
-随包脚本中含绝对路径、挂载、权限和系统服务操作，它们为原始 Linux 环境编写，不是面向任意电脑的通用安装脚本。
+The bundled lifecycle scripts contain absolute paths, mounts, permission changes, and system service operations. They target their original Linux environment and are not generic workstation installers.
 
-## 验证范围
+## Validation scope
 
-本地分析已完成文件与硬链接盘点、关键程序格式检查、文档交叉阅读，并对 15 个 runtime-cell `.sh` 文件执行 `sh -n`，全部通过语法检查。
+The local analysis included inventory and hardlink checks, selected executable format inspection, documentation cross-checks, and `sh -n` checks of 15 runtime-cell shell scripts. All 15 passed syntax validation.
 
-未进行服务启动、核心源码编译、数据库连通、真实连接器调用、设备接入、完整应用构建或动态安全验证。历史 [安全审查材料](home/hatch/workspace/muse-security-audit.md) 保留了其原文与原始范围，不构成对整个系统的安全背书。
+Service startup, core compilation, database connectivity, live connectors, paired devices, full application builds, and dynamic security testing were not performed. The historical [security review](home/hatch/workspace/muse-security-audit.md) is preserved with its original scope and wording; it is not a system-wide security endorsement.
 
-## 版权与许可
+## Copyright and licensing
 
-这是一份公开存档，**公开可见不等于所有内容获得统一的开源授权**。未为整份快照添加 MIT、Apache 等总许可；原始组件的版权、商标及各自已有的许可保持不变。随包 npm 及依赖的许可证保留在对应目录，例如 [npm LICENSE](opt/hatch-image/bin/npm-package/LICENSE)。
+This is a public archive. **Public availability does not establish a uniform open-source license for all included content.** No repository-wide MIT, Apache, or similar license has been assigned to this snapshot. Existing component copyrights, trademarks, and licenses remain applicable. Bundled npm and dependency license files are retained, including [npm's LICENSE](opt/hatch-image/bin/npm-package/LICENSE).
 
-这份快照未提供可确认覆盖全部 Muse/Hatch 内容的统一再分发许可证。本仓库不替原权利人授予额外使用、修改或再分发权利；使用者应按具体文件及组件确认适用条款。
+The snapshot does not include a verified redistribution license covering all Muse/Hatch content. This repository grants no additional rights on behalf of the original rights holders; applicable terms must be checked for each component and file.
