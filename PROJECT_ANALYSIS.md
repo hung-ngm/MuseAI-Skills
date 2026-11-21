@@ -66,58 +66,6 @@ Several capabilities have to be read separately:
 
 **Inference:** "Self-improvement" here is closer to continued maintenance of personalized context and process. The materials on hand cannot support a judgment of "automatically updating model weights" or "intelligence that keeps rising." What is worth borrowing is that suggested reasons and execution traces are retained, and that "queued or executed successfully" is distinguished from "the user has received it." [E3]
 
-## 4. 技术架构
-
-下图综合脚本与文档还原，表示组件职责关系，不表示已验证的完整调用拓扑。客户端、云端控制面和部分宿主服务未随快照提供。
-
-```mermaid
-flowchart TD
-    U[用户与客户端：文档描述] --> A[Hatch Agent daemon]
-    A --> K[Skills 与连接器 manifests]
-    A --> E[执行服务与工具进程]
-    A --> D[PostgreSQL 应用状态：schema 文档]
-    A --> M[文件记忆与用户工作区]
-    A --> J[调度与后台整理]
-    A --> W[Artifacts / Spaces]
-    E --> C[连接器 CLI / 浏览器 / 设备工具]
-    C --> P[凭据代理、权限与网络出口]
-    P --> X[外部服务与设备]
-    R[宿主生命周期控制 + systemd-nspawn] --> A
-    R --> E
-```
-
-### 4.1 运行与隔离
-
-`launch-daemon.sh` 显式调用 `systemd-nspawn`，要求支持 ID-mapped ownership；`ensure-rootfs.sh` 引用持久 rootfs，并为 guest root 使用宿主 UID/GID 131072。`control-daemon.sh` 等待 cell readiness，再调用 `hatch daemon --runtime-cell-leader=...`。[E4]
-
-这说明该部署依赖 Linux 宿主身份、挂载、namespace 和系统服务管理。复制 `/opt` 与 `/home` 不能替代完整镜像。
-
-静态检查还发现了有针对性的防御设计：生命周期参数从 root 所有目录按白名单逐项读取，避免直接 source 客体可写文件；部分 rootfs 写入委托 `spawnd fsop`，注释描述使用 fd 锚定的 `openat2` 路径限制。**脚本能证明调用方式存在，不能证明二进制内部实现和线上隔离完全正确。**[E4][E5]
-
-### 4.2 工具与技能分工
-
-技能文档负责告诉 Agent 何时使用什么能力、如何处理错误和生成结果；CLI 或内置工具承担执行。连接器 manifest 进一步声明方法、权限默认值、OAuth scopes 等。
-
-以 Gmail 为例：读取分组默认 allow，写入分组默认 ask，但草稿、标记已读、移入垃圾箱等方法有各自的 allow 覆盖；发送方法继承 ask。不能把“写入默认 ask”概括成“所有写操作都逐次确认”。当前用户的实际授权也不能从默认值推出。[E6]
-
-渠道配置将技能与二进制的可见性分开管理。`bin-scopes.conf` 明确指出：隐藏 cell 内 CLI 只是可见性控制，不是能力授权边界；宿主侧 worker 可仍然存在。这种边界必须由真正的权限执行层保证。[E7]
-
-### 4.3 数据与可观测性
-
-`muse_db/references/schema.md` 描述了 **17 个 schema 命名空间、195 个关系条目**，涉及 agent、runtime、memory、scheduler、self_improvement、spaces、device、health 等。数字来自文档标题计数，不是查询实际数据库得到的表数。
-
-文档设计了受限只读 SQL、函数与类型白名单、行/字节/时间限制，以及对私有推理记录的脱敏投影。这比只允许字符串以 SELECT 开头更完整，但实际数据库角色、视图和校验器均未验证。[E8]
-
-**推断：** 大量运行、尝试、handoff、outbox、mailbox 与投递相关关系，反映出系统重视长任务恢复和交付追踪。没有实际记录，无法判断重试正确性、重复执行率或投递可靠性。
-
-### 4.4 生成应用运行时
-
-技术 README 描述 Rust 构建入口、TypeScript SDK、Bun、本地 SQLite，以及 Cloudflare Worker/D1/R2 导出。云端接口有意不提供本地 `ctx.inference`、`ctx.agent`、`ctx.emit`；初次数据库迁移是单向 seed，Blob 不随该 seed 迁移。[E9]
-
-这提示一个重要工程事实：将 Agent 生成的小应用搬到公网，不是复制页面即可完成；还要处理身份、数据库、文件和能力差异。
-
-但当前目录仅提供相关说明，缺少 README 所列的 SDK、构建器与产物。因此这里能分析的是接口设计，不能验证构建实现。
-
 ## 4. Technical architecture
 
 The diagram below is reconstructed from scripts and documents. It shows how component responsibilities relate. It is not a verified, complete call topology. Clients, the cloud control plane, and some host services were not included in the snapshot.
