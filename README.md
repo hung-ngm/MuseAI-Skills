@@ -72,89 +72,89 @@ These selections emphasize workflow design that is useful to examine, not proven
 | [opentable](opt/hatch/skills/opentable/SKILL.md) | Find restaurant availability and create, change, or cancel reservations. | [Manifest](opt/hatch/skills/opentable/manifest.yaml) · [Eval](opt/hatch/skills/opentable/eval) |
 | [ticketmaster](opt/hatch/skills/ticketmaster/SKILL.md) | Search events, seats, and prices; return checkout links without completing purchases. | [Manifest](opt/hatch/skills/ticketmaster/manifest.yaml) |
 
-### 办公、邮箱与知识工具（16）
+### Productivity, email, and knowledge tools (16)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [gmail](opt/hatch/skills/gmail/SKILL.md) | 邮件检索、阅读、草稿、发送、回复、标签与退订。 | [权限清单](opt/hatch/skills/gmail/manifest.yaml) · [评测场景](opt/hatch/skills/gmail/eval) |
-| [google-calendar](opt/hatch/skills/google-calendar/SKILL.md) | 议程、事件详情与日程变更。 | [权限清单](opt/hatch/skills/google-calendar/manifest.yaml) · [评测场景](opt/hatch/skills/google-calendar/eval) |
-| [google-contacts](opt/hatch/skills/google-contacts/SKILL.md) | 搜索、创建、修改与删除联系人。 | [权限清单](opt/hatch/skills/google-contacts/manifest.yaml) · [评测场景](opt/hatch/skills/google-contacts/eval) |
-| [google-docs](opt/hatch/skills/google-docs/SKILL.md) | 读取、创建与编辑 Google 文档。 | [权限清单](opt/hatch/skills/google-docs/manifest.yaml) |
-| [google-drive](opt/hatch/skills/google-drive/SKILL.md) | 文件与文件夹管理、上传下载及分享。 | [权限清单](opt/hatch/skills/google-drive/manifest.yaml) · [评测场景](opt/hatch/skills/google-drive/eval) |
-| [google-forms](opt/hatch/skills/google-forms/SKILL.md) | 读取、创建和更新表单，读取回复。 | [权限清单](opt/hatch/skills/google-forms/manifest.yaml) |
-| [google-sheets](opt/hatch/skills/google-sheets/SKILL.md) | 读取、写入与管理 Google 表格。 | [权限清单](opt/hatch/skills/google-sheets/manifest.yaml) |
-| [google-slides](opt/hatch/skills/google-slides/SKILL.md) | 读取、创建与编辑 Google 幻灯片。 | [权限清单](opt/hatch/skills/google-slides/manifest.yaml) |
-| [google-tasks](opt/hatch/skills/google-tasks/SKILL.md) | 任务列表、任务创建、修改与完成。 | [权限清单](opt/hatch/skills/google-tasks/manifest.yaml) · [评测场景](opt/hatch/skills/google-tasks/eval) |
-| [outlook-calendar](opt/hatch/skills/outlook-calendar/SKILL.md) | 读取、创建、修改与删除 Outlook 日程。 | [权限清单](opt/hatch/skills/outlook-calendar/manifest.yaml) |
-| [outlook-contacts](opt/hatch/skills/outlook-contacts/SKILL.md) | 读取、搜索及管理 Outlook 联系人。 | [权限清单](opt/hatch/skills/outlook-contacts/manifest.yaml) |
-| [outlook-mail](opt/hatch/skills/outlook-mail/SKILL.md) | 读取、搜索、发送、回复与删除 Outlook 邮件。 | [权限清单](opt/hatch/skills/outlook-mail/manifest.yaml) |
-| [notion](opt/hatch/skills/notion/SKILL.md) | 通过 Notion MCP 搜索、读取、创建与更新页面。 | [权限清单](opt/hatch/skills/notion/manifest.yaml) |
-| [granola](opt/hatch/skills/granola/SKILL.md) | 通过 OAuth MCP 搜索和读取会议笔记与转录。 | [权限清单](opt/hatch/skills/granola/manifest.yaml) |
-| [muse-mail](opt/hatch/skills/muse-mail/SKILL.md) | Muse Mail 专用邮箱、转发邮件及收件处理流程。 | [参考](opt/hatch/skills/muse-mail/references) |
-| [calendly](opt/hatch/skills/calendly/SKILL.md) | 读取 Calendly 事件、事件类型并管理预约数据。 | [权限清单](opt/hatch/skills/calendly/manifest.yaml) |
+| [gmail](opt/hatch/skills/gmail/SKILL.md) | Search/read mail, draft/send/reply, manage labels, and unsubscribe. | [Manifest](opt/hatch/skills/gmail/manifest.yaml) · [Eval](opt/hatch/skills/gmail/eval) |
+| [google-calendar](opt/hatch/skills/google-calendar/SKILL.md) | Inspect agendas and events and change schedules. | [Manifest](opt/hatch/skills/google-calendar/manifest.yaml) · [Eval](opt/hatch/skills/google-calendar/eval) |
+| [google-contacts](opt/hatch/skills/google-contacts/SKILL.md) | Search, create, update, and delete contacts. | [Manifest](opt/hatch/skills/google-contacts/manifest.yaml) · [Eval](opt/hatch/skills/google-contacts/eval) |
+| [google-docs](opt/hatch/skills/google-docs/SKILL.md) | Read, create, and edit Google Docs. | [Manifest](opt/hatch/skills/google-docs/manifest.yaml) |
+| [google-drive](opt/hatch/skills/google-drive/SKILL.md) | Manage files/folders, uploads, downloads, and sharing. | [Manifest](opt/hatch/skills/google-drive/manifest.yaml) · [Eval](opt/hatch/skills/google-drive/eval) |
+| [google-forms](opt/hatch/skills/google-forms/SKILL.md) | Read, create, and update forms and read responses. | [Manifest](opt/hatch/skills/google-forms/manifest.yaml) |
+| [google-sheets](opt/hatch/skills/google-sheets/SKILL.md) | Read, write, and manage Google Sheets. | [Manifest](opt/hatch/skills/google-sheets/manifest.yaml) |
+| [google-slides](opt/hatch/skills/google-slides/SKILL.md) | Read, create, and edit Google Slides. | [Manifest](opt/hatch/skills/google-slides/manifest.yaml) |
+| [google-tasks](opt/hatch/skills/google-tasks/SKILL.md) | Manage task lists, create/update tasks, and mark completion. | [Manifest](opt/hatch/skills/google-tasks/manifest.yaml) · [Eval](opt/hatch/skills/google-tasks/eval) |
+| [outlook-calendar](opt/hatch/skills/outlook-calendar/SKILL.md) | Read, create, update, and delete Outlook events. | [Manifest](opt/hatch/skills/outlook-calendar/manifest.yaml) |
+| [outlook-contacts](opt/hatch/skills/outlook-contacts/SKILL.md) | Read, search, and manage Outlook contacts. | [Manifest](opt/hatch/skills/outlook-contacts/manifest.yaml) |
+| [outlook-mail](opt/hatch/skills/outlook-mail/SKILL.md) | Read, search, send, reply to, and delete Outlook mail. | [Manifest](opt/hatch/skills/outlook-mail/manifest.yaml) |
+| [notion](opt/hatch/skills/notion/SKILL.md) | Search, read, create, and update pages through Notion MCP. | [Manifest](opt/hatch/skills/notion/manifest.yaml) |
+| [granola](opt/hatch/skills/granola/SKILL.md) | Search/read meeting notes and transcripts through an OAuth-backed MCP server. | [Manifest](opt/hatch/skills/granola/manifest.yaml) |
+| [muse-mail](opt/hatch/skills/muse-mail/SKILL.md) | Operate Muse Mail mailboxes, forwarded messages, and intake workflows. | [References](opt/hatch/skills/muse-mail/references) |
+| [calendly](opt/hatch/skills/calendly/SKILL.md) | Inspect Calendly events/event types and manage scheduling data. | [Manifest](opt/hatch/skills/calendly/manifest.yaml) |
 
-### 社交网络与消息（6）
+### Social networks and messaging (6)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [facebook-cli](opt/hatch/skills/facebook-cli/SKILL.md) | 读取 Facebook 内容与关系，管理自己的 Marketplace 刊登。 | [权限清单](opt/hatch/skills/facebook-cli/manifest.yaml) · [参考](opt/hatch/skills/facebook-cli/references) |
-| [instagram](opt/hatch/skills/instagram/SKILL.md) | 读取内容、账号信息与洞察，按请求发布帖子或视频。 | [权限清单](opt/hatch/skills/instagram/manifest.yaml) · [参考](opt/hatch/skills/instagram/references) |
-| [instagram-messages](opt/hatch/skills/instagram-messages/SKILL.md) | 收件箱、会话、私信搜索与发送。 | [权限清单](opt/hatch/skills/instagram-messages/manifest.yaml) |
-| [messenger](opt/hatch/skills/messenger/SKILL.md) | 联系人、通话及会话检索，发送、编辑、撤回和反应。 | [权限清单](opt/hatch/skills/messenger/manifest.yaml) |
-| [threads](opt/hatch/skills/threads/SKILL.md) | 账号、帖子、信息流与洞察；搜索及按请求发布。 | [权限清单](opt/hatch/skills/threads/manifest.yaml) |
-| [threads-messages](opt/hatch/skills/threads-messages/SKILL.md) | 读取 Threads 消息收件箱、会话及发送消息。 | [权限清单](opt/hatch/skills/threads-messages/manifest.yaml) |
+| [facebook-cli](opt/hatch/skills/facebook-cli/SKILL.md) | Read Facebook content and social context; manage own Marketplace listings. | [Manifest](opt/hatch/skills/facebook-cli/manifest.yaml) · [References](opt/hatch/skills/facebook-cli/references) |
+| [instagram](opt/hatch/skills/instagram/SKILL.md) | Read content, account information, and insights; publish posts/media on request. | [Manifest](opt/hatch/skills/instagram/manifest.yaml) · [References](opt/hatch/skills/instagram/references) |
+| [instagram-messages](opt/hatch/skills/instagram-messages/SKILL.md) | Read inboxes/threads, search DMs, and send messages. | [Manifest](opt/hatch/skills/instagram-messages/manifest.yaml) |
+| [messenger](opt/hatch/skills/messenger/SKILL.md) | Read contacts/calls/conversations and send, edit, unsend, or react to messages. | [Manifest](opt/hatch/skills/messenger/manifest.yaml) |
+| [threads](opt/hatch/skills/threads/SKILL.md) | Inspect accounts, posts, feeds, and insights; search and publish on request. | [Manifest](opt/hatch/skills/threads/manifest.yaml) |
+| [threads-messages](opt/hatch/skills/threads-messages/SKILL.md) | Read Threads inboxes and message threads and send messages. | [Manifest](opt/hatch/skills/threads-messages/manifest.yaml) |
 
-### 购物、商品与金融数据（3）
+### Shopping, merchandise, and financial data (3)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [shopping](opt/hatch/skills/shopping/SKILL.md) | 商品搜索、图片搜商品、比价、展示与购买流程路由。 | [参考](opt/hatch/skills/shopping/references) |
-| [printify](opt/hatch/skills/printify/SKILL.md) | 商品目录、店铺、商品与订单管理。 | [权限清单](opt/hatch/skills/printify/manifest.yaml) |
-| [plaid](opt/hatch/skills/plaid/SKILL.md) | 读取已连接金融账户、余额、交易、负债与投资数据。 | [权限清单](opt/hatch/skills/plaid/manifest.yaml) · [评测场景](opt/hatch/skills/plaid/eval) |
+| [shopping](opt/hatch/skills/shopping/SKILL.md) | Route product discovery, reverse-image shopping, comparisons, presentation, and purchases. | [References](opt/hatch/skills/shopping/references) |
+| [printify](opt/hatch/skills/printify/SKILL.md) | Inspect catalogs and manage shops, products, and orders. | [Manifest](opt/hatch/skills/printify/manifest.yaml) |
+| [plaid](opt/hatch/skills/plaid/SKILL.md) | Read connected accounts, balances, transactions, liabilities, and investments. | [Manifest](opt/hatch/skills/plaid/manifest.yaml) · [Eval](opt/hatch/skills/plaid/eval) |
 
-### 健康与健身数据（6）
+### Health and fitness data (6)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [apple-healthkit](opt/hatch/skills/apple-healthkit/SKILL.md) | 读取同步的 Apple Health 指标、睡眠与运动记录。 | [权限清单](opt/hatch/skills/apple-healthkit/manifest.yaml) |
-| [google-health-connect](opt/hatch/skills/google-health-connect/SKILL.md) | 读取 Android 同步的健康指标、睡眠与运动记录。 | [权限清单](opt/hatch/skills/google-health-connect/manifest.yaml) |
-| [function-health](opt/hatch/skills/function-health/SKILL.md) | 读取检验指标及临床备注。 | [权限清单](opt/hatch/skills/function-health/manifest.yaml) |
-| [healthex](opt/hatch/skills/healthex/SKILL.md) | 连接 HealthEx 并查询药物、化验及健康记录。 | [权限清单](opt/hatch/skills/healthex/manifest.yaml) |
-| [peloton](opt/hatch/skills/peloton/SKILL.md) | 健身课程浏览、课程表及训练预约。 | [权限清单](opt/hatch/skills/peloton/manifest.yaml) |
-| [withings](opt/hatch/skills/withings/SKILL.md) | 连接设备服务并读取身体、活动、睡眠和心脏相关数据。 | [权限清单](opt/hatch/skills/withings/manifest.yaml) · [参考](opt/hatch/skills/withings/references) |
+| [apple-healthkit](opt/hatch/skills/apple-healthkit/SKILL.md) | Read synced Apple Health metrics, sleep, and workout records. | [Manifest](opt/hatch/skills/apple-healthkit/manifest.yaml) |
+| [google-health-connect](opt/hatch/skills/google-health-connect/SKILL.md) | Read synced Android health metrics, sleep, and workout records. | [Manifest](opt/hatch/skills/google-health-connect/manifest.yaml) |
+| [function-health](opt/hatch/skills/function-health/SKILL.md) | Retrieve lab biomarker results and clinician notes. | [Manifest](opt/hatch/skills/function-health/manifest.yaml) |
+| [healthex](opt/hatch/skills/healthex/SKILL.md) | Connect HealthEx and query medications, labs, and health records. | [Manifest](opt/hatch/skills/healthex/manifest.yaml) |
+| [peloton](opt/hatch/skills/peloton/SKILL.md) | Browse fitness classes, schedules, and workout bookings. | [Manifest](opt/hatch/skills/peloton/manifest.yaml) |
+| [withings](opt/hatch/skills/withings/SKILL.md) | Connect Withings and read body, activity, sleep, workout, and heart data. | [Manifest](opt/hatch/skills/withings/manifest.yaml) · [References](opt/hatch/skills/withings/references) |
 
-### 图像、音频与视频工作流（8）
+### Image, audio, and video workflows (8)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [image-search](opt/hatch/skills/image-search/SKILL.md) | 按文本搜索图片及其来源页面。 | — |
-| [media-library](opt/hatch/skills/media-library/SKILL.md) | 搜索、查看用户图库及已连接设备相册。 | — |
-| [spotify](opt/hatch/skills/spotify/SKILL.md) | 搜索音乐与播客、管理播放列表及相关内容。 | [权限清单](opt/hatch/skills/spotify/manifest.yaml) |
-| [generate_podcast](opt/hatch/skills/generate_podcast/SKILL.md) | 创作单人或多人播客、简报与口播摘要，交付 MP3。 | [参考](opt/hatch/skills/generate_podcast/references) |
-| [tts](opt/hatch/skills/tts/SKILL.md) | 将给定文本转换为单人或多人语音。 | [权限清单](opt/hatch/skills/tts/manifest.yaml) |
-| [voice-design](opt/hatch/skills/voice-design/SKILL.md) | 选择或设计用户请求的新语音。 | — |
-| [voice-selector](opt/hatch/skills/voice-selector/SKILL.md) | 系统静态语音目录；本身不是面向用户的工作流。 | — |
-| [magic-moment](opt/hatch/skills/magic-moment/SKILL.md) | 将真人口播与真实 Agent 工作成果同步编排为竖屏视频。 | [流程指南](opt/hatch/skills/magic-moment/guide) · [设计参考](opt/hatch/skills/magic-moment/reference) |
+| [image-search](opt/hatch/skills/image-search/SKILL.md) | Search images and source pages by text query. | — |
+| [media-library](opt/hatch/skills/media-library/SKILL.md) | Search and inspect the user photo library and connected device galleries. | — |
+| [spotify](opt/hatch/skills/spotify/SKILL.md) | Discover music/podcasts and manage playlists and related content. | [Manifest](opt/hatch/skills/spotify/manifest.yaml) |
+| [generate_podcast](opt/hatch/skills/generate_podcast/SKILL.md) | Compose single/multi-voice podcasts, briefings, or narrated summaries as MP3. | [References](opt/hatch/skills/generate_podcast/references) |
+| [tts](opt/hatch/skills/tts/SKILL.md) | Convert supplied text to single- or multi-speaker speech. | [Manifest](opt/hatch/skills/tts/manifest.yaml) |
+| [voice-design](opt/hatch/skills/voice-design/SKILL.md) | Choose or design a new speaking voice at the user request. | — |
+| [voice-selector](opt/hatch/skills/voice-selector/SKILL.md) | Provide the static system voice catalog, not a standalone user workflow. | — |
+| [magic-moment](opt/hatch/skills/magic-moment/SKILL.md) | Turn talking-head footage and real agent work into a synchronized vertical story. | [Guides](opt/hatch/skills/magic-moment/guide) · [Design refs](opt/hatch/skills/magic-moment/reference) |
 
-### 设备、通信与网络（6）
+### Devices, communications, and networking (6)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [device-data](opt/hatch/skills/device-data/SKILL.md) | 读取缓存联系人与日历，清除 Muse 本地副本。 | — |
-| [wearable-device-skills](opt/hatch/skills/wearable-device-skills/SKILL.md) | 发现、检查和调用配对手机或穿戴设备动态提供的能力。 | — |
-| [wearables-comms](opt/hatch/skills/wearables-comms/SKILL.md) | 从请求来源穿戴设备发起通话/短信，处理联系人与号码歧义。 | — |
-| [philips-hue](opt/hatch/skills/philips-hue/SKILL.md) | 控制智能灯、房间、场景与设备。 | [权限清单](opt/hatch/skills/philips-hue/manifest.yaml) |
-| [tessie](opt/hatch/skills/tessie/SKILL.md) | 读取 Tesla 状态并调用明确的车辆操作接口。 | [权限清单](opt/hatch/skills/tessie/manifest.yaml) |
-| [tailscale](opt/hatch/skills/tailscale/SKILL.md) | 加入 Tailnet/Headscale、检查连接并经 TCP 代理访问私有机器。 | — |
+| [device-data](opt/hatch/skills/device-data/SKILL.md) | Read cached contacts/calendars and remove Muse-local copies. | — |
+| [wearable-device-skills](opt/hatch/skills/wearable-device-skills/SKILL.md) | Discover, inspect, and invoke capabilities exposed by paired phones/wearables. | — |
+| [wearables-comms](opt/hatch/skills/wearables-comms/SKILL.md) | Handle wearable-originated calls/texts with contact and phone-number disambiguation. | — |
+| [philips-hue](opt/hatch/skills/philips-hue/SKILL.md) | Control smart lights, rooms, scenes, and devices. | [Manifest](opt/hatch/skills/philips-hue/manifest.yaml) |
+| [tessie](opt/hatch/skills/tessie/SKILL.md) | Inspect Tesla state and invoke explicit vehicle command endpoints. | [Manifest](opt/hatch/skills/tessie/manifest.yaml) |
+| [tailscale](opt/hatch/skills/tailscale/SKILL.md) | Join Tailnet/Headscale, inspect connectivity, and access private machines through a TCP proxy. | — |
 
-### Muse 产品操作（4）
+### Muse product operations (4)
 
-| 技能 | 文档描述的用途 | 配套资料 |
+| Skill | Documented purpose | Supporting files |
 |---|---|---|
-| [muse-early-access](opt/hatch/skills/muse-early-access/SKILL.md) | 申请、查询或撤回抢先体验请求。 | — |
-| [muse-feedback](opt/hatch/skills/muse-feedback/SKILL.md) | 按用户授权提交、查看或撤回反馈与功能请求。 | — |
-| [share-ideas](opt/hatch/skills/share-ideas/SKILL.md) | 按明确请求发布可复用的原生 Muse Idea。 | — |
-| [subscription-status](opt/hatch/skills/subscription-status/SKILL.md) | 读取套餐、额度、用量、重置时间与计费相关状态。 | — |
+| [muse-early-access](opt/hatch/skills/muse-early-access/SKILL.md) | Submit, inspect, or withdraw early-access requests. | — |
+| [muse-feedback](opt/hatch/skills/muse-feedback/SKILL.md) | Submit, inspect, or withdraw feedback and feature requests with user authorization. | — |
+| [share-ideas](opt/hatch/skills/share-ideas/SKILL.md) | Publish reusable native Muse Ideas on explicit request. | — |
+| [subscription-status](opt/hatch/skills/subscription-status/SKILL.md) | Inspect plans, quota, usage, reset times, and billing-related status. | — |
 
 ### 别名与额外资源
 
