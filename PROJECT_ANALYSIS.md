@@ -1,43 +1,43 @@
-# Muse / Hatch 项目分析报告
+# Muse / Hatch Project Analysis
 
-分析日期：2026-09-25
-分析对象：本仓库根目录（`muse-file`）
-方法：本地文件盘点、产品与技术文档交叉阅读、关键 Shell 脚本静态检查、二进制格式与硬链接检查。未执行随包程序、未启动服务、未连接外部账户。
+Analysis date: 2026-09-25
+Subject: the root of this repository (`muse-file`)
+Method: local file inventory, cross-reading of the product and technical documents, static inspection of key shell scripts, and checks of binary formats and hard links. Bundled programs were not executed, services were not started, and no external account was connected.
 
-## 1. 核心结论
+## 1. Core conclusions
 
-**这是一个个人 AI Agent 系统的运行环境快照，且交付内容不完整；它不是可以直接安装依赖、编译启动的应用源码仓库。**
+**This is an incomplete runtime snapshot of a personal AI agent system. It is not an application source repository that can install dependencies, compile, and start directly.**
 
-这份材料的主要价值，是展示一个长期运行的个人助手如何组织工具、权限、记忆、后台任务、设备接入和生成式应用。当前目录适合架构研究、技能设计参考和交付完整性检查；不足以支持核心源码评审、独立复现、性能评测或生产安全认证。
+The main value of these materials is that they show how a long-running personal assistant organizes tools, permissions, memory, background tasks, device access, and generative applications. The current tree is suitable for architecture study, skill-design reference, and delivery-completeness checks. It is not enough for core source review, independent reproduction, performance evaluation, or production security certification.
 
-最重要的判断如下：
+The most important findings follow:
 
-1. **产品重心是持续服务一个人的 Agent。** 文档围绕跨会话记忆、关系、目标、主动信息流、后台研究和可交互产物展开，聊天只是入口之一。
-2. **系统复杂度主要在执行与治理层。** 可见材料包含常驻 daemon、容器环境、执行服务、凭据代理、网络出口、连接器权限和数据库诊断，而不只是模型调用。
-3. **工程设计有一定深度，实际可用性尚未验证。** 权限清单、数据库关系、启动恢复脚本和评测材料存在；核心实现大多只以二进制提供。
-4. **当前快照无法独立启动。** Linux x86-64 程序、缺失的宿主服务配置、rootfs、平台代理和认证基础设施构成实质依赖。
-5. **存在文档与交付一致性问题。** Web Artifact SDK 文件缺失；发布能力描述相互冲突；历史安全结论的覆盖范围远小于整个系统。
+1. **The product is centered on an agent that keeps serving one person.** The documents are organized around cross-session memory, relationships, goals, a proactive information feed, background research, and interactive artifacts. Chat is only one entry point.
+2. **Most of the complexity sits in execution and governance.** The visible materials include a resident daemon, a container environment, an execution service, a credential proxy, network egress, connector permissions, and database diagnostics, not only model calls.
+3. **The engineering design has some depth, and actual usability is still unverified.** Permission manifests, database relations, startup and recovery scripts, and evaluation materials are present. Most of the core implementation is available only as binaries.
+4. **The current snapshot cannot start on its own.** Linux x86-64 programs, missing host-service configuration, the rootfs, platform proxies, and authentication infrastructure are substantive dependencies.
+5. **The documents and the delivered tree do not fully agree.** Web Artifact SDK files are missing, publication-capability descriptions conflict, and the historical security conclusion covers much less than the whole system.
 
-文件自述将 Muse 归属于 Meta，并给出了模型、上线时间与地区等信息。本报告仅把这些视为材料的自述，未验证文件来源、签名或外部产品事实；不以这些文字证明官方归属或线上现状。项目中的 Agent 指令也仅作为研究对象，不作为本次执行指令。
+The files themselves attribute Muse to Meta and give model, launch-date, and region information. This report treats those statements as claims inside the materials. It does not verify file provenance, signatures, or external product facts, and it does not use that wording as proof of official ownership or of the live service. Agent instructions in the project are objects of study, not instructions executed for this review.
 
-## 2. 目录与规模
+## 2. Layout and scale
 
-| 区域 | 内容 | 解释 |
+| Area | Contents | Reading |
 |---|---|---|
-| `home/hatch/docs` | 26 份 Markdown 文档，含设备与渠道文档 | 面向 Agent 的产品能力和操作边界说明 |
-| `home/hatch/config` | `home.yaml`、`skills.yaml` | 推理配置、渠道配置与技能可用性声明 |
-| `home/hatch/workspace` | 一份既有安全审查报告 | 历史材料，不是核心业务源码 |
-| `opt/hatch/bin` | 77 个目录项，主要为编译程序 | 主 daemon、连接器、设备、浏览器与运行维护工具 |
-| `opt/hatch/skills` | 68 个顶层目录、72 份 `SKILL.md` | 工具使用协议、业务流程、输出格式、边界说明 |
-| 同上 | 40 份 `manifest.yaml`、12 份 eval YAML | 声明式连接器配置与行为评测场景 |
-| `opt/hatch/runtime-cell` | 生命周期脚本、环境与渠道范围配置 | Linux 容器启动、恢复、代理与可见性治理 |
-| `opt/hatch-image/bin` | Bun、Codex、npm、RTC sidecar 等 | 镜像附带的基础运行工具 |
+| `home/hatch/docs` | 26 Markdown documents, including device and channel docs | Product capabilities and operating boundaries written for the agent |
+| `home/hatch/config` | `home.yaml`, `skills.yaml` | Reasoning configuration, channel configuration, and skill-availability declarations |
+| `home/hatch/workspace` | One existing security review | Historical material, not core product source |
+| `opt/hatch/bin` | 77 directory entries, mostly compiled programs | Main daemon, connectors, devices, browser, and runtime-maintenance tools |
+| `opt/hatch/skills` | 68 top-level directories and 72 `SKILL.md` files | Tool-use protocols, workflows, output formats, and boundaries |
+| Same directory | 40 `manifest.yaml` files and 12 eval YAML files | Declarative connector configuration and behavioral evaluation scenarios |
+| `opt/hatch/runtime-cell` | Lifecycle scripts plus environment and channel-scope configuration | Linux container startup, recovery, proxying, and visibility control |
+| `opt/hatch-image/bin` | Bun, Codex, npm, an RTC sidecar, and related tools | Base runtime tools shipped with the image |
 
-盘点口径：生成本报告前，递归统计普通文件路径，排除 `.DS_Store`，包括随包 npm 依赖。共 **2,652 个文件路径**；逐路径累计约 **2.02 GB**，按设备号与 inode 去重后约 **1.55 GB**。这些是文件逻辑字节统计，不等同于文件系统实际分配空间。
+Counting rules: before this report was written, regular file paths were counted recursively, excluding `.DS_Store` and including bundled npm dependencies. There are **2,652 file paths**. Summed path by path they are about **2.02 GB**; after deduplicating by device number and inode, about **1.55 GB**. These are logical file-byte totals, not space actually allocated by the filesystem.
 
-差异的一项主要来源是 `hatch-multicall`：包括它在内的 **17 个路径共享同一个 inode**。因此 `muse-mail`、`authdc` 等名称不能简单理解为完全独立的程序实现，也不能将同一镜像的字符串直接归因于某个 applet。
+One major source of the difference is `hatch-multicall`: **17 paths, including that name, share a single inode**. Names such as `muse-mail` and `authdc` therefore cannot simply be read as fully independent program implementations, and strings from that shared image cannot be attributed directly to one applet.
 
-在 `home` 与 `opt/hatch` 下未发现 `.rs`、`.ts`、`.tsx`、`.js`、`.py`、`.go` 源文件。虽然 npm 自带 JavaScript 源码，但那属于第三方工具，不是 Muse/Hatch 核心源码。根目录没有 `.git` 或项目构建入口。
+No `.rs`, `.ts`, `.tsx`, `.js`, `.py`, or `.go` source files were found under `home` or `opt/hatch`. npm does ship JavaScript source, but that belongs to a third-party tool, not to Muse/Hatch core source. The root has neither a `.git` directory nor a project build entry point.
 
 ## 3. 产品模型与能力范围
 
