@@ -145,6 +145,58 @@ flowchart TD
 
 但当前目录仅提供相关说明，缺少 README 所列的 SDK、构建器与产物。因此这里能分析的是接口设计，不能验证构建实现。
 
+## 4. Technical architecture
+
+The diagram below is reconstructed from scripts and documents. It shows how component responsibilities relate. It is not a verified, complete call topology. Clients, the cloud control plane, and some host services were not included in the snapshot.
+
+```mermaid
+flowchart TD
+    U[Users and clients, as documented] --> A[Hatch Agent daemon]
+    A --> K[Skills and connector manifests]
+    A --> E[Execution service and tool processes]
+    A --> D[PostgreSQL application state, schema docs]
+    A --> M[File memory and the user workspace]
+    A --> J[Scheduling and background maintenance]
+    A --> W[Artifacts / Spaces]
+    E --> C[Connector CLIs / browser / device tools]
+    C --> P[Credential proxy, permissions, and network egress]
+    P --> X[External services and devices]
+    R[Host lifecycle control + systemd-nspawn] --> A
+    R --> E
+```
+
+### 4.1 Runtime and isolation
+
+`launch-daemon.sh` calls `systemd-nspawn` explicitly and requires ID-mapped ownership. `ensure-rootfs.sh` refers to a persistent rootfs and uses host UID/GID 131072 for the guest root. `control-daemon.sh` waits until the cell is ready, then calls `hatch daemon --runtime-cell-leader=...`. [E4]
+
+This deployment depends on Linux host identity, mounts, namespaces, and system-service management. Copying `/opt` and `/home` does not stand in for a complete image.
+
+Static inspection also found defensive design aimed at specific risks. Lifecycle parameters are read one item at a time, through an allowlist, from a root-owned directory, instead of sourcing a guest-writable file directly. Some rootfs writes are delegated to `spawnd fsop`. Comments describe fd-anchored `openat2` path limits. **The scripts can prove that this calling pattern exists. They cannot prove that the binary internals, or isolation in production, are fully correct.** [E4][E5]
+
+### 4.2 Division of work between tools and skills
+
+Skill documents tell the agent when to use a capability, how to handle errors, and how to produce a result. A CLI or a built-in tool does the execution. A connector manifest further declares methods, permission defaults, OAuth scopes, and related fields.
+
+Take Gmail. The read group defaults to allow and the write group defaults to ask, but draft, mark-read, and move-to-trash each have their own allow override. Send inherits ask. "Write defaults to ask" cannot be summarized as "every write is confirmed one action at a time." The current user's actual grants also cannot be inferred from the defaults. [E6]
+
+Channel configuration manages visibility of skills and of binaries separately. `bin-scopes.conf` says explicitly that hiding a CLI inside the cell is only visibility control, not an authorization boundary for the capability. A host-side worker can still exist. That boundary has to be enforced by a real permission layer. [E7]
+
+### 4.3 Data and observability
+
+`muse_db/references/schema.md` describes **17 schema namespaces and 195 relation entries**, covering agent, runtime, memory, scheduler, self_improvement, spaces, device, health, and others. The numbers come from counts in the document headings. They are not a table count from querying a live database.
+
+The document designs restricted read-only SQL, allowlists of functions and types, limits on rows, bytes, and time, and a redacted projection over private reasoning records. That is more complete than only requiring a string to begin with SELECT, but the actual database roles, views, and validators were not verified. [E8]
+
+**Inference:** The large number of relations for runs, attempts, handoffs, the outbox, mailboxes, and delivery shows that the system treats long-task recovery and delivery tracking as important. Without real records, retry correctness, the duplicate-execution rate, and delivery reliability cannot be judged.
+
+### 4.4 Runtime for generated applications
+
+The technical README describes a Rust build entry point, a TypeScript SDK, Bun, local SQLite, and export to Cloudflare Workers, D1, and R2. The cloud interface intentionally does not offer local `ctx.inference`, `ctx.agent`, or `ctx.emit`. The first database migration is a one-way seed, and blobs are not migrated with that seed. [E9]
+
+That points to an important engineering fact: putting a small application the agent generated onto the public internet is not finished by copying the page. Identity, the database, files, and differences in capability also have to be handled.
+
+The current tree provides only the related explanation. The SDK, builder, and build outputs named in the README are missing. What can be analyzed here is the interface design. The build implementation cannot be verified.
+
 ## 5. 主要问题与风险
 
 以下优先级针对“接手这份材料并开展开发/复现”，不是漏洞严重性评级。
