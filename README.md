@@ -454,11 +454,11 @@ The files provide evidence of design intent and parts of the implementation stru
 
 <a id="download"></a>
 
-## 下载与完整性校验
+## Download and verify
 
-### 完整下载（包括二进制）
+### Full checkout, including binaries
 
-先安装 [Git LFS](https://git-lfs.com/)，然后执行：
+Install [Git LFS](https://git-lfs.com/) first:
 
 ```bash
 git lfs install
@@ -468,22 +468,22 @@ git lfs pull
 git lfs fsck
 ```
 
-二进制与共享库由 Git LFS 管理。未安装 LFS 或跳过下载时，相关路径可能只有小型指针文件。普通 ZIP 下载不能作为完整 LFS 内容已获取的证明；优先使用以上方式。
+Executables and shared libraries are tracked through Git LFS. Without LFS, or when downloads are skipped, those paths may contain small pointer files. Do not assume a standard ZIP download contains all LFS objects; prefer the commands above.
 
-原始文件逐路径累计约 2.02 GB；按本地 inode 去重约 1.55 GB。Git 不保留硬链接关系，因此 checkout 后共享镜像的多个名字通常成为独立文件，需要按约 2 GB 工作区加 Git/LFS 缓存预留空间。
+The original files total approximately 2.02 GB when counted by path, or 1.55 GB when deduplicated by local inode. Git does not preserve hardlink relationships, so multiple names for a shared executable will generally become separate files after checkout. Allow roughly 2 GB for the working tree plus additional Git/LFS cache space.
 
-### 只阅读文档和脚本
+### Documentation-only checkout
 
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/win4r/MuseAI-Skills.git
 cd MuseAI-Skills
 ```
 
-需要二进制时再运行 `git lfs pull`。
+Run `git lfs pull` later if you need the binaries.
 
-### 验证文件内容
+### Content checksums
 
-完成 LFS 下载后，在仓库根目录运行：
+After downloading LFS objects, run from the repository root:
 
 ```bash
 # Linux
@@ -493,7 +493,7 @@ sha256sum --check SHA256SUMS
 shasum -a 256 --check SHA256SUMS
 ```
 
-清单覆盖发布时的普通文件，不包含清单自身、`.git` 和被忽略的本机元数据。符号链接由 Git 跟踪，不列入该普通文件清单。哈希用于检查内容一致性，不验证原始来源或程序安全性。
+The manifest covers published regular files, excluding itself, `.git`, and ignored local metadata. Symlinks are tracked by Git and excluded from this regular-file manifest. Checksums establish content consistency, not provenance or executable safety.
 
 ## 可运行性与已知缺项
 
