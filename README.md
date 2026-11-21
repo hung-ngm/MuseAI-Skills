@@ -382,58 +382,58 @@ flowchart LR
 
 This is a responsibility map, not a verified systemd dependency graph. `runtime-cell-entry.sh` supplies shared readiness/environment helpers; `guest.env` supplies configuration. The post-ready reconcile can run alongside the daemon, so readiness does not prove every package update has finished.
 
-### 核心二进制与 CLI 分组
+### Core binaries and CLI groups
 
-`opt/hatch/bin/` 有 77 个程序路径。下表列出关键入口与分组，明确区分有脚本调用依据的职责和仅按名称进行的归类；没有为撰写说明执行这些二进制。
+`opt/hatch/bin/` contains 77 executable paths. Key entries and groups follow; the table explicitly distinguishes script-backed roles from grouping based only on names. No binary was run to obtain these descriptions.
 
-| 文件或目录 | 作用与阅读要点 |
+| File or directory | Purpose and reading notes |
 |---|---|
-| [hatch](opt/hatch/bin/hatch) | 主 Agent daemon；control-daemon.sh 可见实际调用。 |
-| [spawnd](opt/hatch/bin/spawnd) | 运行环境管理辅助程序；脚本可见文件操作、挂载、网络 gate 和生命周期事件调用，不仅是生成子进程。 |
-| [hatch-execd](opt/hatch/bin/hatch-execd) | 命令执行服务，宿主控制入口和 socket activation 的说明可见。 |
-| [hatch-multicall](opt/hatch/bin/hatch-multicall) · [muse-mail](opt/hatch/bin/muse-mail) · [authdc](opt/hatch/bin/authdc) | 共享程序镜像的多个调用名称；原快照有 17 个硬链接路径，Git checkout 不保留该 inode 关系。 |
-| [hatch_gws_cli](opt/hatch/bin/hatch_gws_cli) · [hatch_gws_auth](opt/hatch/bin/hatch_gws_auth) · [hatch_messenger_cli](opt/hatch/bin/hatch_messenger_cli) | Google Workspace 与 Messenger 相关程序；CLI 文件名不一定与技能目录同名，使用方法以技能文档为准。 |
-| [browser-broker](opt/hatch/bin/browser-broker) · [browser-service](opt/hatch/bin/browser-service) · [hatch-browser-lease-helper](opt/hatch/bin/hatch-browser-lease-helper) · [ingress-rev-proxy](opt/hatch/bin/ingress-rev-proxy) | 浏览器协调、服务、租约及入口代理相关组件；此处仅按名称归类，内部协议与运行行为未验证。 |
-| [hatch-doctor](opt/hatch/bin/hatch-doctor) · [hatch-healthd](opt/hatch/bin/hatch-healthd) · [hatch-rescue](opt/hatch/bin/hatch-rescue) · [hatch-rescuectl](opt/hatch/bin/hatch-rescuectl) · [hatch-rescue-systemctl](opt/hatch/bin/hatch-rescue-systemctl) | 诊断、健康检查和恢复相关命名的程序；源码与独立操作手册未提供，不应据名称推断完整参数。 |
-| [hatch-vault](opt/hatch/bin/hatch-vault) · [hatch-connector-output](opt/hatch/bin/hatch-connector-output) · [hatch-ws-client](opt/hatch/bin/hatch-ws-client) | 凭据、连接器输出与 WebSocket 客户端相关命名组件；仅列出文件，未验证内部实现。 |
-| [duffel](opt/hatch/bin/duffel) · [plaid](opt/hatch/bin/plaid) · [spotify-api](opt/hatch/bin/spotify-api) · [device-data](opt/hatch/bin/device-data) · [wearables-display](opt/hatch/bin/wearables-display) | 连接器与设备 CLI 示例；结合对应 SKILL.md、manifest 和账户授权理解用途。 |
+| [hatch](opt/hatch/bin/hatch) | Main agent daemon, with invocation visible in control-daemon.sh. |
+| [spawnd](opt/hatch/bin/spawnd) | Runtime management helper; scripts invoke file operations, mounts, network gates, and lifecycle events, not just process spawning. |
+| [hatch-execd](opt/hatch/bin/hatch-execd) | Execution service with documented host entry and socket-activation handling. |
+| [hatch-multicall](opt/hatch/bin/hatch-multicall) · [muse-mail](opt/hatch/bin/muse-mail) · [authdc](opt/hatch/bin/authdc) | Multiple invocation names for a shared executable image; the original snapshot has 17 hardlink paths, an inode relationship Git checkout does not preserve. |
+| [hatch_gws_cli](opt/hatch/bin/hatch_gws_cli) · [hatch_gws_auth](opt/hatch/bin/hatch_gws_auth) · [hatch_messenger_cli](opt/hatch/bin/hatch_messenger_cli) | Google Workspace/Messenger-related programs; executable names can differ from skill directories, so consult the skill for invocation. |
+| [browser-broker](opt/hatch/bin/browser-broker) · [browser-service](opt/hatch/bin/browser-service) · [hatch-browser-lease-helper](opt/hatch/bin/hatch-browser-lease-helper) · [ingress-rev-proxy](opt/hatch/bin/ingress-rev-proxy) | Browser coordination/service/lease and ingress-proxy components, grouped by name; internal protocols and runtime behavior are unverified. |
+| [hatch-doctor](opt/hatch/bin/hatch-doctor) · [hatch-healthd](opt/hatch/bin/hatch-healthd) · [hatch-rescue](opt/hatch/bin/hatch-rescue) · [hatch-rescuectl](opt/hatch/bin/hatch-rescuectl) · [hatch-rescue-systemctl](opt/hatch/bin/hatch-rescue-systemctl) | Programs named for diagnostics, health, and recovery; source and standalone operating manuals are absent, so names do not establish supported flags. |
+| [hatch-vault](opt/hatch/bin/hatch-vault) · [hatch-connector-output](opt/hatch/bin/hatch-connector-output) · [hatch-ws-client](opt/hatch/bin/hatch-ws-client) | Components named for vault access, connector output, and a WebSocket client; listed as files without validating internals. |
+| [duffel](opt/hatch/bin/duffel) · [plaid](opt/hatch/bin/plaid) · [spotify-api](opt/hatch/bin/spotify-api) · [device-data](opt/hatch/bin/device-data) · [wearables-display](opt/hatch/bin/wearables-display) | Examples of connector/device CLIs; read with their skill, manifest, and account-authorization requirements. |
 
-### 镜像侧工具与第三方依赖
+### Image-side tools and third-party dependencies
 
-| 文件或目录 | 作用与阅读要点 |
+| File or directory | Purpose and reading notes |
 |---|---|
-| [runtime-cell.kdl](opt/hatch-image/bin/runtime-cell.kdl) | 运行环境的软件包与配置文件声明，包含 systemd unit 内容与版本 pin；不是完整 rootfs 或构建工程。 |
-| [hatch-manifest](opt/hatch-image/bin/hatch-manifest) | 被 reconcile 脚本调用以应用运行环境清单的二进制。 |
-| [convert-cell-intent](opt/hatch-image/bin/convert-cell-intent) | 无扩展名的 Python 脚本：把旧 rootfs 的包安装记录转为 OS-intent ledger，并支持生成 base manifest。 |
-| [hatch-prewarm](opt/hatch-image/bin/hatch-prewarm) | 无扩展名的 Bash 脚本：按预算预热指定程序/依赖的页缓存。 |
-| [bun](opt/hatch-image/bin/bun) | 随包 JavaScript/TypeScript 运行工具的 Linux 二进制；不是技能源码。 |
-| [codex](opt/hatch-image/bin/codex) | 随包、名为 codex 的 Linux 二进制；仅有该文件不能确定完整版本、来源或线上主模型。 |
-| [codex-resources/bwrap](opt/hatch-image/bin/codex-resources/bwrap) | 随包 bwrap 隔离辅助程序；真实调用策略未验证。 |
-| [npm-package](opt/hatch-image/bin/npm-package) | npm 10.9.4 的工具包目录，包含 lib、bin、docs、man、node_modules 与许可证；这是第三方工具代码，不是 Muse 核心源码。 |
-| [npm](opt/hatch-image/bin/npm) | 指向 npm-package/bin/npm-cli.js 的符号链接；npx 同理指向 npx-cli.js。 |
-| [rtc-sidecar](opt/hatch-image/bin/rtc-sidecar) | 实时通信相关命名的 sidecar 二进制；未验证媒体调用链。 |
-| [rtc-sidecar-lib](opt/hatch-image/bin/rtc-sidecar-lib) | 随 RTC sidecar 提供的 .so 共享库集合。 |
-| [disabled-user-mgmt](opt/hatch-image/bin/disabled-user-mgmt) | 用于不可变镜像的账户管理拒绝脚本，提示用户/组应在构建时配置。 |
-| [percona-telemetry-disabled](opt/hatch-image/bin/percona-telemetry-disabled) | 直接成功退出的占位脚本，注释说明用于替代 Percona telemetry 入口；不能据此推断整个系统不含遥测。 |
-| [gws](opt/hatch-image/bin/gws) | 当前零字节文件；不能作为可工作的 Google CLI 使用。 |
+| [runtime-cell.kdl](opt/hatch-image/bin/runtime-cell.kdl) | Package and configuration manifest including systemd unit content and version pins; not a complete rootfs or build project. |
+| [hatch-manifest](opt/hatch-image/bin/hatch-manifest) | Binary invoked by reconciliation scripts to apply the runtime manifest. |
+| [convert-cell-intent](opt/hatch-image/bin/convert-cell-intent) | Extensionless Python script that converts old-rootfs package state into an OS-intent ledger and can emit a base manifest. |
+| [hatch-prewarm](opt/hatch-image/bin/hatch-prewarm) | Extensionless Bash script that prewarms selected program/dependency page-cache data within a budget. |
+| [bun](opt/hatch-image/bin/bun) | Bundled Linux JavaScript/TypeScript runtime binary, not skill source. |
+| [codex](opt/hatch-image/bin/codex) | Bundled Linux binary named codex; presence alone does not establish exact version, provenance, or the active model. |
+| [codex-resources/bwrap](opt/hatch-image/bin/codex-resources/bwrap) | Bundled bwrap isolation helper; actual invocation policy is unverified. |
+| [npm-package](opt/hatch-image/bin/npm-package) | npm 10.9.4 bundle with lib, bin, docs, man, node_modules, and licenses; third-party tool code rather than Muse core source. |
+| [npm](opt/hatch-image/bin/npm) | Symlink to npm-package/bin/npm-cli.js; npx similarly points to npx-cli.js. |
+| [rtc-sidecar](opt/hatch-image/bin/rtc-sidecar) | Sidecar binary named for real-time communication; its media integration is unverified. |
+| [rtc-sidecar-lib](opt/hatch-image/bin/rtc-sidecar-lib) | Shared .so libraries shipped alongside the RTC sidecar. |
+| [disabled-user-mgmt](opt/hatch-image/bin/disabled-user-mgmt) | Account-management rejection stub for the immutable image, directing provisioning to build time. |
+| [percona-telemetry-disabled](opt/hatch-image/bin/percona-telemetry-disabled) | No-op success stub described as replacing the Percona telemetry entry point; does not establish that the whole system lacks telemetry. |
+| [gws](opt/hatch-image/bin/gws) | Zero-byte file in this snapshot, not a usable Google CLI. |
 
-### 怎样把文件串起来读：一个例子
+### Connecting the files: a reading example
 
-以 Gmail 为例：先读 [SKILL.md](opt/hatch/skills/gmail/SKILL.md) 理解操作流程，再读 [manifest](opt/hatch/skills/gmail/manifest.yaml) 理解方法权限和 scopes，随后看 [eval 场景](opt/hatch/skills/gmail/eval/scenarios.yaml) 理解期望行为，最后对照通用的[连接器契约](home/hatch/docs/connectors.md)。单看编译后的 CLI 无法解释这套策略。同样，`config/skills.yaml` 声明 available 不等于账户已连接，`skill-scopes.conf` 控制可见性也不等于授予操作权限。
+For Gmail, read the [skill](opt/hatch/skills/gmail/SKILL.md) for the workflow, the [manifest](opt/hatch/skills/gmail/manifest.yaml) for method permissions and scopes, and the [eval scenarios](opt/hatch/skills/gmail/eval/scenarios.yaml) for expected behavior. Then compare the shared [connector contract](home/hatch/docs/connectors.md). The compiled CLI alone cannot explain this policy. Likewise, `config/skills.yaml` declaring a skill available does not supply an account connection, while `skill-scopes.conf` controls visibility rather than granting permission.
 
-初始材料盘点（排除 `.DS_Store`，不含新增仓库文档与校验清单）：
+Snapshot inventory, excluding `.DS_Store` and newly added repository documents and checksums:
 
-| 项目 | 数量 |
+| Item | Count |
 |---|---:|
-| 原始快照文件路径 | 2,652 |
-| 产品与设备文档 | 26 |
-| 技能顶层目录 / `SKILL.md` | 68 / 72 |
-| `manifest.yaml` | 40 |
-| eval YAML 场景文件 | 12 |
-| `opt/hatch/bin` 目录项 | 77 |
-| schema 文档中的命名空间 / 关系条目 | 17 / 195 |
+| Original snapshot file paths | 2,652 |
+| Product and device documents | 26 |
+| Top-level skill directories / `SKILL.md` files | 68 / 72 |
+| `manifest.yaml` files | 40 |
+| Evaluation YAML files | 12 |
+| Entries in `opt/hatch/bin` | 77 |
+| Documented database namespaces / relations | 17 / 195 |
 
-精确的发布文件集合以 Git 树和 `SHA256SUMS` 为准。数据库数字是文档统计，不是实际数据库查询结果。
+Use the Git tree and `SHA256SUMS` for the exact published file set. Database counts describe the supplied documentation, not a live database query.
 
 <a id="architecture"></a>
 
