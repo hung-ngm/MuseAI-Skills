@@ -66,6 +66,33 @@ No `.rs`, `.ts`, `.tsx`, `.js`, `.py`, or `.go` source files were found under `h
 
 **推断：** 这里的“自我改进”更接近个性化上下文与流程的持续维护。现有材料不能支持“自动更新模型权重”或“智能水平持续提升”的判断。值得借鉴的是保留建议缘由与执行轨迹，并明确区分“排队/执行成功”和“用户已收到”。[E3]
 
+## 3. Product model and capability scope
+
+### 3.1 From one conversation to ongoing work
+
+The materials describe this loop:
+
+**The user states an intent → personal context is read → a goal is created or updated → tools do the work → a file, application, or notification is delivered → memory and an execution record are saved → background processes update suggestions.**
+
+Several capabilities have to be read separately:
+
+| Capability | Design in the materials | What this does not establish |
+|---|---|---|
+| Goals | Goals, first-level subgoals, progress, and briefings | Creating a goal does not itself carry out the work |
+| Scheduled tasks | Check on an interval, save run history, and send the user the result | Not a continuous event stream, and not a guarantee of second-level detection |
+| Feed / Ideas | Proactively organize content and propose actionable suggestions | No evidence in this review of real user outcomes or adoption |
+| Memory / Relationships | Cross-session memory, relationships between people, and periodic organization | Does not prove that a forget operation covers every stored copy |
+| Artifacts / Spaces | Documents, static pages, and stateful interactive applications | This snapshot cannot build or run the full pipeline |
+| Connectors and devices | Mail, calendar, social, health, finance, smart home, and similar services | Installing a skill does not mean an account is connected or that an operation is authorized |
+
+`skills.yaml` contains 31 `status: available` entries, but those are only local configuration declarations. Connection state, OAuth scopes, user permissions, region, and deployment channel also affect availability together. [E1][E2]
+
+### 3.2 Proactive capability is not the model training itself
+
+`self_improvement.md` describes background processes for memory maintenance, relationship organization, Ideas planning, goal research, a nightly review, and skill review. The visible design mainly updates notes, structured records, and workflows.
+
+**Inference:** "Self-improvement" here is closer to continued maintenance of personalized context and process. The materials on hand cannot support a judgment of "automatically updating model weights" or "intelligence that keeps rising." What is worth borrowing is that suggested reasons and execution traces are retained, and that "queued or executed successfully" is distinguished from "the user has received it." [E3]
+
 ## 4. 技术架构
 
 下图综合脚本与文档还原，表示组件职责关系，不表示已验证的完整调用拓扑。客户端、云端控制面和部分宿主服务未随快照提供。
