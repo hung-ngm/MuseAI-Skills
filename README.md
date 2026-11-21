@@ -286,57 +286,57 @@ The repository root is an archive root, not the root of a running operating syst
 | [home/hatch/assets/onboarding_tour/memory_import.md](home/hatch/assets/onboarding_tour/memory_import.md) | Prompt and user-review workflow for importing context from another AI; not an imported memory dataset. |
 | [home/hatch/workspace/muse-security-audit.md](home/hatch/workspace/muse-security-audit.md) | Preserved historical review of the original environment; referenced paths are not necessarily included in this archive. |
 
-### 产品与设备说明文档
+### Product and device documentation
 
-以下 26 份文档说明这份快照中的产品契约。账号特定的能力和历史可用性描述，不应当作已核实的当前产品事实。
+These 26 files document the product contract in the supplied snapshot. Account-specific statements and historical availability must not be read as verified current product behavior.
 
-| 文件或目录 | 作用与阅读要点 |
+| File or directory | Purpose and reading notes |
 |---|---|
-| [muse.md](home/hatch/docs/muse.md) | 产品概览及各专题入口。 |
-| [client-surfaces.md](home/hatch/docs/client-surfaces.md) | Web、移动端和 Mac 的界面与能力差异说明。 |
-| [goals.md](home/hatch/docs/goals.md) | 目标、子目标、进展、briefing 与后台工作的边界。 |
-| [feed.md](home/hatch/docs/feed.md) | Feed 内容与生成机制、用户 brief 的作用。 |
-| [ideas.md](home/hatch/docs/ideas.md) | Idea 建议卡片、执行和移除等产品操作。 |
-| [self_improvement.md](home/hatch/docs/self_improvement.md) | 后台记忆、关系、研究、回顾、技能维护及证据追踪。 |
-| [scheduling-and-watching.md](home/hatch/docs/scheduling-and-watching.md) | 轮询式监测、调度限制、运行历史和通知交付。 |
-| [artifacts.md](home/hatch/docs/artifacts.md) | 文档、静态页和交互应用的保存、分享与删除契约。 |
-| [files-and-library.md](home/hatch/docs/files-and-library.md) | 工作区文件与 Library 的关系、下载与文件展示。 |
-| [connectors.md](home/hatch/docs/connectors.md) | 连接状态、能力范围、方法权限、OAuth 与失败处理。 |
-| [browser.md](home/hatch/docs/browser.md) | 服务端浏览器、登录会话、交互任务与下载限制。 |
-| [privacy-and-credentials.md](home/hatch/docs/privacy-and-credentials.md) | 凭据引用、Vault、授权、数据导出与删除规则。 |
-| [data-handling.md](home/hatch/docs/data-handling.md) | 数据来源、用途、用户控制及政策引用；是材料内的说明。 |
-| [payments-and-purchases.md](home/hatch/docs/payments-and-purchases.md) | 商品比较、结算、交易条款确认与钱包付款流程。 |
-| [calls-texts-notifications.md](home/hatch/docs/calls-texts-notifications.md) | 电话、短信、消息和通知各自的入口与限制。 |
-| [voice.md](home/hatch/docs/voice.md) | 此快照账号的语音能力说明，不能泛化到全部账号。 |
-| [media.md](home/hatch/docs/media.md) | 图片、视频生成及编辑的产品能力说明。 |
-| [referrals.md](home/hatch/docs/referrals.md) | 邀请、邀请码与兑换流程。 |
-| [channel-availability.md](home/hatch/docs/channel-availability.md) | 消息渠道可用性与路由判定。 |
-| [channels/whatsapp.md](home/hatch/docs/channels/whatsapp.md) | WhatsApp 渠道连接与媒体说明；不是 WhatsApp 连接器实现。 |
-| [devices/mac_app.md](home/hatch/docs/devices/mac_app.md) | 配对 Mac 的能力选择及远端 Agent/本机边界。 |
-| [devices/tailscale.md](home/hatch/docs/devices/tailscale.md) | 私有网络连接及访问说明。 |
-| [devices/home_link.md](home/hatch/docs/devices/home_link.md) | Home Link 家庭网络桥接与设备发现说明。 |
-| [devices/home_link/integrations/brother_printers.md](home/hatch/docs/devices/home_link/integrations/brother_printers.md) | Brother 打印机的 IPP 能力发现与打印路径。 |
-| [devices/home_link/integrations/lutron_smart_bridges.md](home/hatch/docs/devices/home_link/integrations/lutron_smart_bridges.md) | Lutron 灯光/窗帘桥接的 HAP 发现与配对说明。 |
-| [devices/home_link/integrations/shelly_plugs.md](home/hatch/docs/devices/home_link/integrations/shelly_plugs.md) | Shelly 插座识别、开关与功率数据说明。 |
+| [muse.md](home/hatch/docs/muse.md) | Product overview and topic index. |
+| [client-surfaces.md](home/hatch/docs/client-surfaces.md) | UI and capability differences across web, mobile, and Mac surfaces. |
+| [goals.md](home/hatch/docs/goals.md) | Goals, subgoals, progress, briefings, and background-work boundaries. |
+| [feed.md](home/hatch/docs/feed.md) | Feed content, generation behavior, and the user brief. |
+| [ideas.md](home/hatch/docs/ideas.md) | Idea suggestion cards, execution, and dismissal behavior. |
+| [self_improvement.md](home/hatch/docs/self_improvement.md) | Background memory, relationship, research, reflection, skill upkeep, and evidence tracing. |
+| [scheduling-and-watching.md](home/hatch/docs/scheduling-and-watching.md) | Polling-based monitoring, scheduling limits, run history, and notification delivery. |
+| [artifacts.md](home/hatch/docs/artifacts.md) | Storage, sharing, and deletion contracts for documents, pages, and interactive apps. |
+| [files-and-library.md](home/hatch/docs/files-and-library.md) | Workspace files, Library behavior, downloads, and file presentation. |
+| [connectors.md](home/hatch/docs/connectors.md) | Connection state, supported capabilities, method permissions, OAuth, and failure handling. |
+| [browser.md](home/hatch/docs/browser.md) | Server-side browser sessions, interactive tasks, sign-in, and download limitations. |
+| [privacy-and-credentials.md](home/hatch/docs/privacy-and-credentials.md) | Credential references, Vault, permissions, data export, and deletion rules. |
+| [data-handling.md](home/hatch/docs/data-handling.md) | Documented data sources, use, user controls, and policy references within the supplied materials. |
+| [payments-and-purchases.md](home/hatch/docs/payments-and-purchases.md) | Product comparison, checkout, transaction-term review, and wallet payment workflows. |
+| [calls-texts-notifications.md](home/hatch/docs/calls-texts-notifications.md) | Entry points and boundaries for calls, texts, messages, and notifications. |
+| [voice.md](home/hatch/docs/voice.md) | Voice availability described for this snapshot account, not all accounts. |
+| [media.md](home/hatch/docs/media.md) | Documented image/video generation and editing capabilities. |
+| [referrals.md](home/hatch/docs/referrals.md) | Invitations, referral codes, and redemption. |
+| [channel-availability.md](home/hatch/docs/channel-availability.md) | Channel availability and delivery routing. |
+| [channels/whatsapp.md](home/hatch/docs/channels/whatsapp.md) | WhatsApp channel setup and media guidance, not a connector implementation. |
+| [devices/mac_app.md](home/hatch/docs/devices/mac_app.md) | Capability selection for a paired Mac and remote-agent/local-device boundaries. |
+| [devices/tailscale.md](home/hatch/docs/devices/tailscale.md) | Private-network connection and access guidance. |
+| [devices/home_link.md](home/hatch/docs/devices/home_link.md) | Home Link network bridge and device-discovery guidance. |
+| [devices/home_link/integrations/brother_printers.md](home/hatch/docs/devices/home_link/integrations/brother_printers.md) | IPP discovery and printing workflow for Brother printers. |
+| [devices/home_link/integrations/lutron_smart_bridges.md](home/hatch/docs/devices/home_link/integrations/lutron_smart_bridges.md) | HAP discovery and pairing for Lutron light/shade bridges. |
+| [devices/home_link/integrations/shelly_plugs.md](home/hatch/docs/devices/home_link/integrations/shelly_plugs.md) | Shelly plug identification, switching, and power data. |
 
-### 技能包与配套文件
+### Skill packages and supporting files
 
-| 文件或目录 | 作用与阅读要点 |
+| File or directory | Purpose and reading notes |
 |---|---|
-| [SKILL.md（以 Gmail 为例 / Gmail example）](opt/hatch/skills/gmail/SKILL.md) | 技能入口：frontmatter 描述触发条件，正文描述操作流程和边界。 |
-| [manifest.yaml（Gmail）](opt/hatch/skills/gmail/manifest.yaml) | 机器可读的连接器元数据、权限默认值、scope 要求与命令映射；方法级设置可覆盖分组默认值。 |
-| [eval/scenarios.yaml（Gmail）](opt/hatch/skills/gmail/eval/scenarios.yaml) | 行为评测场景、用户目标及期望行为；存在场景不代表已经运行通过。 |
-| [opt/hatch/skills/flightaware/eval/findings.md](opt/hatch/skills/flightaware/eval/findings.md) | 历史评测发现与基础设施阻塞记录，应结合版本和测试环境解读。 |
-| [opt/hatch/skills/skill-creator/references/authoring_guide.md](opt/hatch/skills/skill-creator/references/authoring_guide.md) | 命名、文件拆分、模板与检查项；适合研究技能编写方法。 |
-| [opt/hatch/skills/goals/creation](opt/hatch/skills/goals/creation) / [opt/hatch/skills/goals/guides](opt/hatch/skills/goals/guides) | 前者是按领域的首次目标创建指南；后者是既有目标的持续支持 scaffold。 |
-| [opt/hatch/skills/muse_db/references/schema.md](opt/hatch/skills/muse_db/references/schema.md) | 受限 SQL 规则、标识符索引及 17 个 schema 下的 195 个关系说明；不是数据库或迁移源码。 |
-| [opt/hatch/skills/forget/references/artifact-inventory.md](opt/hatch/skills/forget/references/artifact-inventory.md) | 遗忘操作规划时的跨系统数据位置清单与检查依据。 |
-| [opt/hatch/skills/artifacts/references](opt/hatch/skills/artifacts/references) / [opt/hatch/skills/artifacts/testing/SKILL.md](opt/hatch/skills/artifacts/testing/SKILL.md) | 共享写作/图表/地图等规范，以及跨产物验收规则；引用的工具脚本并未齐备。 |
-| [opt/hatch/skills/magic-moment/guide](opt/hatch/skills/magic-moment/guide) / [opt/hatch/skills/magic-moment/reference](opt/hatch/skills/magic-moment/reference) | 口播素材、事实与叙事、视觉、剧本、时间线和渲染前评审流程，以及设计规范。 |
-| [opt/hatch/skills/magic-moment/reference/design-system/muse-moments-kit.html](opt/hatch/skills/magic-moment/reference/design-system/muse-moments-kit.html) / [opt/hatch/skills/magic-moment/reference/design-system/story-compositions.html](opt/hatch/skills/magic-moment/reference/design-system/story-compositions.html) | 可阅读的 HTML 组件和构图参考；不是完整产品前端，部分依赖资源可能缺失。 |
-| [opt/hatch/skills/spaces/templates/space-static/workspace_agents.md](opt/hatch/skills/spaces/templates/space-static/workspace_agents.md) / [opt/hatch/skills/spaces/templates/space-ts/workspace_agents.md](opt/hatch/skills/spaces/templates/space-ts/workspace_agents.md) | 静态与 TypeScript 应用工作区的 Agent 指令模板；不是已生成的应用源码。 |
-| [opt/hatch/skills/spaces/ts-runtime/README.md](opt/hatch/skills/spaces/ts-runtime/README.md) / [opt/hatch/skills/spaces/ts-runtime/docs/vertical-tool-schemas.md](opt/hatch/skills/spaces/ts-runtime/docs/vertical-tool-schemas.md) | 应用运行时与领域工具的数据契约说明；描述的 SDK 和构建文件缺失。 |
-| [opt/hatch/skills/generate_podcast/references/save-to-spotify.md](opt/hatch/skills/generate_podcast/references/save-to-spotify.md) / [opt/hatch/skills/generate_podcast/save-to-spotify/manifest.yaml](opt/hatch/skills/generate_podcast/save-to-spotify/manifest.yaml) / [opt/hatch/skills/generate_podcast/save-to-spotify/vendor/save-to-spotify/README.md](opt/hatch/skills/generate_podcast/save-to-spotify/vendor/save-to-spotify/README.md) | 播客保存到 Spotify 的流程、权限和上游发布固定版本说明；vendor 说明不等于包含完整上游源码。 |
+| [SKILL.md (Gmail example)](opt/hatch/skills/gmail/SKILL.md) | Skill entry point: frontmatter defines triggers; the body defines procedure and boundaries. |
+| [manifest.yaml (Gmail)](opt/hatch/skills/gmail/manifest.yaml) | Machine-readable connector metadata, permission defaults, scope requirements, and command mappings; method-level rules can override group defaults. |
+| [eval/scenarios.yaml (Gmail)](opt/hatch/skills/gmail/eval/scenarios.yaml) | Behavioral scenarios, user objectives, and expected behavior; definitions are not passing test results. |
+| [opt/hatch/skills/flightaware/eval/findings.md](opt/hatch/skills/flightaware/eval/findings.md) | Historical evaluation findings and infrastructure blockers; interpret with their version and environment. |
+| [opt/hatch/skills/skill-creator/references/authoring_guide.md](opt/hatch/skills/skill-creator/references/authoring_guide.md) | Naming, resource separation, templates, and review checks for skill authors. |
+| [opt/hatch/skills/goals/creation](opt/hatch/skills/goals/creation) / [opt/hatch/skills/goals/guides](opt/hatch/skills/goals/guides) | The first contains domain-specific goal intake guides; the second contains scaffolds for ongoing support. |
+| [opt/hatch/skills/muse_db/references/schema.md](opt/hatch/skills/muse_db/references/schema.md) | Restricted SQL rules, identifier index, and 195 relation descriptions across 17 schemas; not a database or migration source. |
+| [opt/hatch/skills/forget/references/artifact-inventory.md](opt/hatch/skills/forget/references/artifact-inventory.md) | Cross-system data-location inventory for planning a forgetting operation. |
+| [opt/hatch/skills/artifacts/references](opt/hatch/skills/artifacts/references) / [opt/hatch/skills/artifacts/testing/SKILL.md](opt/hatch/skills/artifacts/testing/SKILL.md) | Shared prose/chart/map guidance and cross-format validation rules; referenced helper scripts are incomplete. |
+| [opt/hatch/skills/magic-moment/guide](opt/hatch/skills/magic-moment/guide) / [opt/hatch/skills/magic-moment/reference](opt/hatch/skills/magic-moment/reference) | Source footage, factual narrative, visuals, screenplay, timeline, and pre-render review guidance plus design specifications. |
+| [opt/hatch/skills/magic-moment/reference/design-system/muse-moments-kit.html](opt/hatch/skills/magic-moment/reference/design-system/muse-moments-kit.html) / [opt/hatch/skills/magic-moment/reference/design-system/story-compositions.html](opt/hatch/skills/magic-moment/reference/design-system/story-compositions.html) | HTML component and composition references, not a full product frontend; some dependent assets may be absent. |
+| [opt/hatch/skills/spaces/templates/space-static/workspace_agents.md](opt/hatch/skills/spaces/templates/space-static/workspace_agents.md) / [opt/hatch/skills/spaces/templates/space-ts/workspace_agents.md](opt/hatch/skills/spaces/templates/space-ts/workspace_agents.md) | Agent instruction templates for static and TypeScript artifact workspaces, not generated application source. |
+| [opt/hatch/skills/spaces/ts-runtime/README.md](opt/hatch/skills/spaces/ts-runtime/README.md) / [opt/hatch/skills/spaces/ts-runtime/docs/vertical-tool-schemas.md](opt/hatch/skills/spaces/ts-runtime/docs/vertical-tool-schemas.md) | Application-runtime and vertical-tool data contracts; the described SDK and build files are missing. |
+| [opt/hatch/skills/generate_podcast/references/save-to-spotify.md](opt/hatch/skills/generate_podcast/references/save-to-spotify.md) / [opt/hatch/skills/generate_podcast/save-to-spotify/manifest.yaml](opt/hatch/skills/generate_podcast/save-to-spotify/manifest.yaml) / [opt/hatch/skills/generate_podcast/save-to-spotify/vendor/save-to-spotify/README.md](opt/hatch/skills/generate_podcast/save-to-spotify/vendor/save-to-spotify/README.md) | Save-to-Spotify workflow, permissions, and upstream release-pinning notes; the vendor README is not complete upstream source. |
 
 ### 运行环境生命周期与配置
 
