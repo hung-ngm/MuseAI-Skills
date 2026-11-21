@@ -338,36 +338,36 @@ These 26 files document the product contract in the supplied snapshot. Account-s
 | [opt/hatch/skills/spaces/ts-runtime/README.md](opt/hatch/skills/spaces/ts-runtime/README.md) / [opt/hatch/skills/spaces/ts-runtime/docs/vertical-tool-schemas.md](opt/hatch/skills/spaces/ts-runtime/docs/vertical-tool-schemas.md) | Application-runtime and vertical-tool data contracts; the described SDK and build files are missing. |
 | [opt/hatch/skills/generate_podcast/references/save-to-spotify.md](opt/hatch/skills/generate_podcast/references/save-to-spotify.md) / [opt/hatch/skills/generate_podcast/save-to-spotify/manifest.yaml](opt/hatch/skills/generate_podcast/save-to-spotify/manifest.yaml) / [opt/hatch/skills/generate_podcast/save-to-spotify/vendor/save-to-spotify/README.md](opt/hatch/skills/generate_podcast/save-to-spotify/vendor/save-to-spotify/README.md) | Save-to-Spotify workflow, permissions, and upstream release-pinning notes; the vendor README is not complete upstream source. |
 
-### 运行环境生命周期与配置
+### Runtime lifecycle and configuration
 
-这些是实现脚本和配置，不是可以照抄执行的启动教程。下表依据注释和可见调用说明职责；完整宿主 unit 与 nspawn 配置缺失。
+These are implementation scripts/configurations, not a copy-and-run tutorial. The comments and visible calls establish their intended responsibilities; full host units and nspawn settings are missing.
 
-| 文件或目录 | 作用与阅读要点 |
+| File or directory | Purpose and reading notes |
 |---|---|
-| [pre-start.sh](opt/hatch/runtime-cell/pre-start.sh) | 启动前清理旧状态，准备挂载、出口 gate 和生命周期记录。 |
-| [ensure-rootfs.sh](opt/hatch/runtime-cell/ensure-rootfs.sh) | 准备/校正镜像本地 rootfs、路径与所有权，生成客体环境和系统配置；部分文件操作委托 spawnd。 |
-| [resolve-rootfs-path.sh](opt/hatch/runtime-cell/resolve-rootfs-path.sh) | 当前实现固定返回 /var/lib/hatch-runtime/rootfs；不是仓库内 rootfs。 |
-| [require-modules.sh](opt/hatch/runtime-cell/require-modules.sh) | 预加载需要的内核模块，禁用列出的不需要模块并写就绪标记。 |
-| [launch-daemon.sh](opt/hatch/runtime-cell/launch-daemon.sh) | 实际启动 systemd-nspawn 容器并组装按渠道可见的技能/二进制 overlay；名称中的 daemon 不应被误读为只启动主程序。 |
-| [post-start.sh](opt/hatch/runtime-cell/post-start.sh) | 配置 veth 地址、网络过滤并发布运行环境就绪状态。 |
-| [runtime-cell-entry.sh](opt/hatch/runtime-cell/runtime-cell-entry.sh) | 供宿主控制脚本加载的公共函数：解析 leader PID、等待 ready、装载环境。 |
-| [control-daemon.sh](opt/hatch/runtime-cell/control-daemon.sh) | 宿主侧读取可信环境、等待 cell 就绪、传递生命周期元数据，再调用 hatch daemon。 |
-| [control-execd.sh](opt/hatch/runtime-cell/control-execd.sh) | 保留 systemd socket activation 信息，调用 hatch-execd 并指定 cell leader。 |
-| [run-daemon.sh](opt/hatch/runtime-cell/run-daemon.sh) | 随包保留的客体入口：装载客体环境、移除 PTRACE capability 后执行 daemon；不能据其存在认定它是当前控制脚本的调用路径。 |
-| [guest.env](opt/hatch/runtime-cell/guest.env) | 纯 KEY=VALUE 环境文件，列出 HOME/PATH、代理、socket、CA 等配置；与 Shell 脚本区分。 |
-| [guest-runtime-env.sh](opt/hatch/runtime-cell/guest-runtime-env.sh) | 可 source 的 Shell 环境导出脚本；包含读取 env/override 等逻辑。 |
-| [build-cell-trust-store.sh](opt/hatch/runtime-cell/build-cell-trust-store.sh) | 宿主生成供 cell 只读挂载的信任锚和 NSS 数据库。 |
-| [hatch-preflight-opportunistic](opt/hatch/runtime-cell/hatch-preflight-opportunistic) | 无扩展名的 Shell 脚本：就绪后进行软件包 reconcile，失败记录日志而不阻塞启动。 |
-| [skill-scopes.conf](opt/hatch/runtime-cell/skill-scopes.conf) | 按部署渠道定义额外技能目录的可见性，注释标明由上游清单生成。 |
-| [bin-scopes.conf](opt/hatch/runtime-cell/bin-scopes.conf) | 独立定义额外 CLI 的渠道可见性；可见性 gating 不等于执行授权。 |
-| [stop.sh](opt/hatch/runtime-cell/stop.sh) | 排空/停止流程、有限等待、容器关闭及数据库状态相关处理。 |
-| [post-stop.sh](opt/hatch/runtime-cell/post-stop.sh) | 清理 ready 标记、home 挂载传播锚点与残留 veth。 |
-| [is-loopback-rv.sh](opt/hatch/runtime-cell/is-loopback-rv.sh) | 判断 /hatch 挂载是否为 loopback 替代卷并返回状态码；部分调用者注释与当前 resolver 实现存在差异。 |
-| [etc/hosts](opt/hatch/runtime-cell/etc/hosts) | cell 的静态主机名与代理地址映射。 |
-| [etc/resolv.conf](opt/hatch/runtime-cell/etc/resolv.conf) | cell 的 DNS 网关地址配置。 |
-| [etc/wgetrc](opt/hatch/runtime-cell/etc/wgetrc) | Wget 使用的 CA bundle 路径。 |
+| [pre-start.sh](opt/hatch/runtime-cell/pre-start.sh) | Prepare mounts, egress gating, lifecycle records, and stale-state cleanup before startup. |
+| [ensure-rootfs.sh](opt/hatch/runtime-cell/ensure-rootfs.sh) | Prepare/reconcile the image-local rootfs, paths, ownership, guest environment, and system configuration; delegates some file operations to spawnd. |
+| [resolve-rootfs-path.sh](opt/hatch/runtime-cell/resolve-rootfs-path.sh) | Currently returns /var/lib/hatch-runtime/rootfs, an external runtime path rather than a directory in this repository. |
+| [require-modules.sh](opt/hatch/runtime-cell/require-modules.sh) | Preload required kernel modules, block listed unnecessary modules, and write readiness markers. |
+| [launch-daemon.sh](opt/hatch/runtime-cell/launch-daemon.sh) | Launch the systemd-nspawn container and assemble channel-scoped skill/binary overlays; despite its name it is not merely the agent executable launcher. |
+| [post-start.sh](opt/hatch/runtime-cell/post-start.sh) | Configure veth addressing and network filtering and publish runtime readiness. |
+| [runtime-cell-entry.sh](opt/hatch/runtime-cell/runtime-cell-entry.sh) | Shared host-controller functions for leader PID lookup, readiness waits, and environment loading. |
+| [control-daemon.sh](opt/hatch/runtime-cell/control-daemon.sh) | Host-side environment/readiness/lifecycle handling before invoking hatch daemon. |
+| [control-execd.sh](opt/hatch/runtime-cell/control-execd.sh) | Preserve systemd socket-activation state and invoke hatch-execd with the cell leader. |
+| [run-daemon.sh](opt/hatch/runtime-cell/run-daemon.sh) | Bundled guest-side entry: load guest environment, drop PTRACE capability, and exec the daemon; presence alone does not establish its use by the current controller. |
+| [guest.env](opt/hatch/runtime-cell/guest.env) | Plain KEY=VALUE configuration for HOME/PATH, proxies, sockets, and CA paths; distinct from a shell script. |
+| [guest-runtime-env.sh](opt/hatch/runtime-cell/guest-runtime-env.sh) | Sourceable shell environment-export script with env/override loading logic. |
+| [build-cell-trust-store.sh](opt/hatch/runtime-cell/build-cell-trust-store.sh) | Build host-owned trust anchors and NSS databases for read-only cell mounts. |
+| [hatch-preflight-opportunistic](opt/hatch/runtime-cell/hatch-preflight-opportunistic) | Extensionless shell script for post-readiness package reconciliation; logs failures without blocking startup. |
+| [skill-scopes.conf](opt/hatch/runtime-cell/skill-scopes.conf) | Channel-scoped visibility of additional skill directories; marked as generated from an upstream manifest. |
+| [bin-scopes.conf](opt/hatch/runtime-cell/bin-scopes.conf) | Independently scopes extra CLI visibility by channel; visibility gating is not execution authorization. |
+| [stop.sh](opt/hatch/runtime-cell/stop.sh) | Drain/stop orchestration, bounded waits, container shutdown, and database-state handling. |
+| [post-stop.sh](opt/hatch/runtime-cell/post-stop.sh) | Clean readiness markers, home-mount propagation anchors, and residual veth state. |
+| [is-loopback-rv.sh](opt/hatch/runtime-cell/is-loopback-rv.sh) | Classify whether /hatch uses a loopback substitute volume via exit codes; some caller comments differ from the current resolver implementation. |
+| [etc/hosts](opt/hatch/runtime-cell/etc/hosts) | Static cell hostname and proxy-address mappings. |
+| [etc/resolv.conf](opt/hatch/runtime-cell/etc/resolv.conf) | Cell DNS gateway configuration. |
+| [etc/wgetrc](opt/hatch/runtime-cell/etc/wgetrc) | CA bundle path selected for Wget. |
 
-按职责理解启动关系：
+The conceptual startup relationship is:
 
 ```mermaid
 flowchart LR
@@ -380,7 +380,7 @@ flowchart LR
   C -.-> H[opportunistic package reconcile]
 ```
 
-这是职责关系图，不是已验证的 systemd 依赖图。`runtime-cell-entry.sh` 提供共享的就绪/环境处理，`guest.env` 提供配置。就绪后的 reconcile 可以与 daemon 并行，因此 ready 不等于所有软件包更新都已结束。
+This is a responsibility map, not a verified systemd dependency graph. `runtime-cell-entry.sh` supplies shared readiness/environment helpers; `guest.env` supplies configuration. The post-ready reconcile can run alongside the daemon, so readiness does not prove every package update has finished.
 
 ### 核心二进制与 CLI 分组
 
